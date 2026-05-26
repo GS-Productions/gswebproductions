@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitale Saúde — Clínica de Medicina Integrativa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #0A6E55;
+    --verde-claro: #12A07A;
+    --verde-menta: #E6F4F0;
+    --creme: #FAF8F3;
+    --branco: #FFFFFF;
+    --cinza-escuro: #1A1A1A;
+    --cinza-medio: #5A5A5A;
+    --cinza-claro: #E8E8E8;
+    --dourado: #C9A84C;
+    --dourado-claro: #F0E6C8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--creme);
+    color: var(--cinza-escuro);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 5%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,248,243,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(10,110,85,0.08);
+    transition: box-shadow 0.3s;
+  }
+
+  nav.scrolled { box-shadow: 0 4px 32px rgba(10,110,85,0.10); }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: var(--verde);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .logo-icon svg { width: 20px; height: 20px; }
+
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cinza-escuro);
+    letter-spacing: -0.02em;
+  }
+
+  .logo-text span { color: var(--verde); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--cinza-medio);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--verde); }
+
+  .nav-cta {
+    background: var(--verde);
+    color: white !important;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: background 0.3s, transform 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--verde-claro) !important; transform: translateY(-1px); }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--cinza-escuro);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 5% 60px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 55%;
+    height: 110%;
+    background: radial-gradient(ellipse at top right, #C8EDE4 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dourado-claro);
+    color: var(--dourado);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 50px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--dourado);
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: var(--cinza-escuro);
+    margin-bottom: 24px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--verde);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--cinza-medio);
+    max-width: 480px;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--verde);
+    color: white;
+    padding: 16px 34px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(10,110,85,0.25);
+  }
+
+  .btn-primary:hover {
+    background: var(--verde-claro);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(10,110,85,0.35);
+  }
+
+  .btn-secondary {
+    color: var(--cinza-escuro);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s;
+  }
+
+  .btn-secondary:hover { color: var(--verde); }
+
+  .btn-secondary svg { transition: transform 0.3s; }
+  .btn-secondary:hover svg { transform: translateX(4px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--cinza-claro);
+  }
+
+  .stat-item {}
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--verde);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--cinza-medio);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-card-main {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 24px 80px rgba(10,110,85,0.12), 0 4px 16px rgba(0,0,0,0.06);
+    position: relative;
+    z-index: 2;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .card-avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0A6E55, #12A07A);
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+  }
+
+  .card-info h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .card-info p { font-size: 0.8rem; color: var(--cinza-medio); }
+
+  .card-appointment {
+    background: var(--verde-menta);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+  }
+
+  .appt-label { font-size: 0.75rem; color: var(--verde); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+
+  .appt-details {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .appt-date {
+    background: var(--verde);
+    color: white;
+    border-radius: 10px;
+    padding: 8px 14px;
+    text-align: center;
+  }
+
+  .appt-date .day { font-size: 1.4rem; font-weight: 700; line-height: 1; }
+  .appt-date .month { font-size: 0.7rem; text-transform: uppercase; }
+
+  .appt-meta {}
+  .appt-meta strong { font-size: 0.9rem; }
+  .appt-meta span { font-size: 0.78rem; color: var(--cinza-medio); display: block; }
+
+  .card-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .metric-box {
+    background: var(--creme);
+    border-radius: 12px;
+    padding: 14px;
+  }
+
+  .metric-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--verde);
+  }
+
+  .metric-label { font-size: 0.72rem; color: var(--cinza-medio); margin-top: 2px; }
+
+  .hero-float-badge {
+    position: absolute;
+    bottom: -20px;
+    left: -30px;
+    background: white;
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 3;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+
+  .float-icon {
+    width: 42px; height: 42px;
+    background: var(--dourado-claro);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .float-text strong { display: block; font-size: 0.9rem; color: var(--cinza-escuro); }
+  .float-text span { font-size: 0.75rem; color: var(--cinza-medio); }
+
+  /* ===== SECTION BASE ===== */
+  section { padding: 90px 5%; }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 16px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 24px; height: 2px;
+    background: var(--verde);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--cinza-escuro);
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--cinza-medio);
+    max-width: 540px;
+    margin-bottom: 48px;
+  }
+
+  /* ===== ESPECIALIDADES ===== */
+  .especialidades { background: white; }
+
+  .esp-header { text-align: center; }
+  .esp-header .section-tag { justify-content: center; }
+  .esp-header .section-tag::before { display: none; }
+  .esp-header .section-desc { margin: 0 auto 48px; }
+
+  .esp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .esp-card {
+    background: var(--creme);
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: all 0.35s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+  }
+
+  .esp-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--verde);
+    transform: scaleX(0);
+    transition: transform 0.35s;
+    transform-origin: left;
+  }
+
+  .esp-card:hover {
+    border-color: var(--verde-menta);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(10,110,85,0.1);
+  }
+
+  .esp-card:hover::before { transform: scaleX(1); }
+
+  .esp-icon {
+    width: 54px; height: 54px;
+    background: var(--verde-menta);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    transition: background 0.35s;
+  }
+
+  .esp-card:hover .esp-icon { background: var(--verde); }
+  .esp-card:hover .esp-icon svg path { fill: white; }
+
+  .esp-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--cinza-escuro);
+  }
+
+  .esp-card p {
+    font-size: 0.87rem;
+    line-height: 1.65;
+    color: var(--cinza-medio);
+  }
+
+  /* ===== RESULTADOS ===== */
+  .resultados {
+    background: var(--verde);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .resultados::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+
+  .res-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .res-content .section-tag { color: var(--dourado); }
+  .res-content .section-tag::before { background: var(--dourado); }
+  .res-content .section-title { color: white; }
+  .res-content .section-desc { color: rgba(255,255,255,0.72); }
+
+  .res-numbers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .res-num-box {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 28px;
+    transition: background 0.3s;
+  }
+
+  .res-num-box:hover { background: rgba(255,255,255,0.14); }
+
+  .res-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .res-num span { color: var(--dourado); }
+
+  .res-num-label { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.4; }
+
+  /* ===== DEPOIMENTOS ===== */
+  .depoimentos { background: var(--creme); }
+
+  .dep-header { text-align: center; }
+  .dep-header .section-tag { justify-content: center; }
+  .dep-header .section-tag::before { display: none; }
+  .dep-header .section-desc { margin: 0 auto 48px; }
+
+  .dep-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .dep-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    transition: box-shadow 0.3s;
+  }
+
+  .dep-card:hover { box-shadow: 0 16px 48px rgba(10,110,85,0.1); }
+
+  .dep-quote {
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--verde-menta);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 16px;
+  }
+
+  .dep-text {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--cinza-medio);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .dep-stars {
+    color: var(--dourado);
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+  }
+
+  .dep-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .dep-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--verde-menta), var(--verde-claro));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    color: var(--verde);
+    font-size: 1rem;
+  }
+
+  .dep-name strong { display: block; font-size: 0.9rem; }
+  .dep-name span { font-size: 0.78rem; color: var(--cinza-medio); }
+
+  /* ===== MÉDICOS ===== */
+  .medicos { background: white; }
+
+  .med-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .med-card {
+    text-align: center;
+    background: var(--creme);
+    border-radius: 20px;
+    padding: 32px 20px 24px;
+    transition: all 0.3s;
+  }
+
+  .med-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(10,110,85,0.1);
+  }
+
+  .med-photo {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, var(--verde-menta), var(--verde));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    border: 3px solid white;
+    box-shadow: 0 4px 16px rgba(10,110,85,0.15);
+  }
+
+  .med-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .med-card .esp { font-size: 0.8rem; color: var(--verde); font-weight: 600; margin-bottom: 8px; }
+  .med-card .crm { font-size: 0.75rem; color: var(--cinza-medio); }
+
+  /* ===== AGENDAMENTO ===== */
+  .agendamento {
+    background: linear-gradient(135deg, #F0FBF7 0%, #FAF8F3 100%);
+    border-top: 1px solid var(--cinza-claro);
+  }
+
+  .agenda-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .agenda-form {
+    background: white;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 8px 48px rgba(10,110,85,0.08);
+  }
+
+  .agenda-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: var(--cinza-escuro);
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cinza-medio);
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid var(--cinza-claro);
+    border-radius: 12px;
+    font-size: 0.92rem;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--creme);
+    color: var(--cinza-escuro);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(10,110,85,0.08);
+    background: white;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .form-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--verde);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 8px;
+    box-shadow: 0 8px 24px rgba(10,110,85,0.25);
+  }
+
+  .form-submit:hover {
+    background: var(--verde-claro);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(10,110,85,0.35);
+  }
+
+  .agenda-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--cinza-escuro);
+    line-height: 1.25;
+  }
+
+  .agenda-info p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--cinza-medio);
+    margin-bottom: 32px;
+  }
+
+  .agenda-features { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+
+  .agenda-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 0.92rem;
+    color: var(--cinza-medio);
+    line-height: 1.5;
+  }
+
+  .agenda-features .feat-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--verde-menta);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    color: var(--verde);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--cinza-escuro);
+    color: white;
+    padding: 60px 5% 32px;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+  }
+
+  .footer-brand .logo-text { color: white; font-size: 1.4rem; }
+  .footer-brand .logo-text span { color: var(--verde-claro); }
+
+  .footer-desc {
+    font-size: 0.87rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    margin-top: 16px;
+    margin-bottom: 24px;
+  }
+
+  .footer-contact a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+
+  .footer-contact a:hover { color: var(--verde-claro); }
+
+  .footer-col h4 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+  .footer-col ul a {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-col ul a:hover { color: var(--verde-claro); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-bottom p {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-bottom a { color: var(--verde-claro); text-decoration: none; }
+
+  .copyright-notice {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 32px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .copyright-notice strong { color: rgba(255,255,255,0.55); }
+
+  /* ===== WHATSAPP FLOAT ===== */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+    transition: all 0.3s;
+    text-decoration: none;
+    animation: pulse-wa 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 8px 32px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 8px 48px rgba(37,211,102,0.65); }
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+  }
+
+  /* ===== RESPONSIVIDADE ===== */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero-desc { margin: 0 auto 40px; }
+    .hero-actions { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .hero-visual { display: none; }
+    .esp-grid { grid-template-columns: repeat(2, 1fr); }
+    .dep-grid { grid-template-columns: 1fr 1fr; }
+    .med-grid { grid-template-columns: repeat(2, 1fr); }
+    .res-inner { grid-template-columns: 1fr; gap: 40px; }
+    .agenda-inner { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .hero { padding: 90px 4% 48px; }
+    .hero-badge { font-size: 0.7rem; }
+    .hero-stats { flex-wrap: wrap; gap: 20px; }
+    section { padding: 60px 4%; }
+    .esp-grid { grid-template-columns: 1fr; }
+    .dep-grid { grid-template-columns: 1fr; }
+    .dep-grid .dep-card:nth-child(3) { display: none; }
+    .med-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .res-numbers { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ===== ANIMAÇÕES DE ENTRADA ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in:nth-child(2) { transition-delay: 0.1s; }
+  .fade-in:nth-child(3) { transition-delay: 0.2s; }
+  .fade-in:nth-child(4) { transition-delay: 0.3s; }
+  .fade-in:nth-child(5) { transition-delay: 0.4s; }
+  .fade-in:nth-child(6) { transition-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="white" opacity="0.9"/>
+        <path d="M11 7h2v3h3v2h-3v3h-2v-3H8v-2h3V7z" fill="#0A6E55"/>
+      </svg>
+    </div>
+    <span class="logo-text">Vitale <span>Saúde</span></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#medicos">Médicos</a></li>
+    <li><a href="#depoimentos">Resultados</a></li>
+    <li><a href="#agendamento" class="nav-cta">Agendar Consulta</a></li>
+  </ul>
+
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✦ Medicina Integrativa &amp; Preventiva</div>
+    <h1 class="hero-title">
+      Cuidado que <em>transforma</em><br>vidas com ciência
+    </h1>
+    <p class="hero-desc">
+      Na Vitale Saúde, unimos medicina convencional e integrativa para oferecer um cuidado verdadeiramente personalizado. Sua saúde é tratada com atenção, excelência e humanidade.
+    </p>
+    <div class="hero-actions">
+      <a href="#agendamento" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="3" stroke="white" stroke-width="2"/><path d="M8 2v4M16 2v4M3 10h18" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        Agendar Consulta
+      </a>
+      <a href="#especialidades" class="btn-secondary">
+        Nossas especialidades
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">+8.400</div>
+        <div class="stat-label">Pacientes atendidos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Taxa de satisfação</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Especialidades</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-main">
+      <div class="card-header">
+        <div class="card-avatar">👨‍⚕️</div>
+        <div class="card-info">
+          <h4>Dra. Ana Vitale</h4>
+          <p>Medicina Integrativa · CRM 58.340</p>
+        </div>
+      </div>
+
+      <div class="card-appointment">
+        <div class="appt-label">📅 Próxima consulta confirmada</div>
+        <div class="appt-details">
+          <div class="appt-date">
+            <div class="day">28</div>
+            <div class="month">Mai</div>
+          </div>
+          <div class="appt-meta">
+            <strong>Consulta de Acompanhamento</strong>
+            <span>14h30 · Sala 3 · Andar 2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-metrics">
+        <div class="metric-box">
+          <div class="metric-val">+134%</div>
+          <div class="metric-label">Aumento em agendamentos</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-val">&lt; 24h</div>
+          <div class="metric-label">Tempo médio de retorno</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-float-badge">
+      <div class="float-icon">⭐</div>
+      <div class="float-text">
+        <strong>4.9 / 5.0</strong>
+        <span>+620 avaliações verificadas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section class="especialidades" id="especialidades">
+  <div class="esp-header">
+    <div class="section-tag">O que oferecemos</div>
+    <h2 class="section-title">Especialidades médicas<br>com excelência</h2>
+    <p class="section-desc">Contamos com uma equipe multidisciplinar de especialistas comprometidos com o seu bem-estar e saúde de forma integral.</p>
+  </div>
+
+  <div class="esp-grid">
+    <div class="esp-card fade-in">
+      <div class="esp-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z" fill="#0A6E55" opacity="0.3"/><path d="M11 7h2v3h3v2h-3v3h-2v-3H8v-2h3V7z" fill="#0A6E55"/></svg>
+      </div>
+      <h3>Medicina Integrativa</h3>
+      <p>Combinamos medicina convencional com abordagens complementares, tratando o paciente em sua totalidade — corpo, mente e espírito.</p>
+    </div>
+
+    <div class="esp-card fade-in">
+      <div class="esp-icon">🫀</div>
+      <h3>Cardiologia Preventiva</h3>
+      <p>Diagnóstico preciso e prevenção de doenças cardiovasculares com os mais modernos equipamentos de imagem e exame funcional.</p>
+    </div>
+
+    <div class="esp-card fade-in">
+      <div class="esp-icon">🧠</div>
+      <h3>Neurologia & Saúde Mental</h3>
+      <p>Acompanhamento especializado para transtornos neurológicos e suporte à saúde mental com abordagem humanizada.</p>
+    </div>
+
+    <div class="esp-card fade-in">
+      <div class="esp-icon">🔬</div>
+      <h3>Nutrologia Clínica</h3>
+      <p>Avaliação nutricional completa com exames laboratoriais avançados para otimização metabólica e bem-estar duradouro.</p>
+    </div>
+
+    <div class="esp-card fade-in">
+      <div class="esp-icon">🌿</div>
+      <h3>Medicina Funcional</h3>
+      <p>Investigamos as causas raízes dos desequilíbrios de saúde através de protocolos de diagnóstico e tratamento avançados.</p>
+    </div>
+
+    <div class="esp-card fade-in">
+      <div class="esp-icon">🦴</div>
+      <h3>Ortopedia & Fisioterapia</h3>
+      <p>Tratamento completo de lesões musculoesqueléticas com equipe integrada de ortopedistas e fisioterapeutas especializados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section class="resultados" id="resultados">
+  <div class="res-inner">
+    <div class="res-content">
+      <div class="section-tag">Nosso impacto</div>
+      <h2 class="section-title">Números que<br>refletem confiança</h2>
+      <p class="section-desc">Mais de uma década cuidando de famílias com dedicação, ciência de ponta e atendimento humanizado.</p>
+      <a href="#agendamento" class="btn-primary" style="background:white; color:var(--verde);">
+        Quero cuidar da minha saúde
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#0A6E55" stroke-width="2" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+
+    <div class="res-numbers">
+      <div class="res-num-box fade-in">
+        <div class="res-num">8.4<span>k</span></div>
+        <div class="res-num-label">Pacientes atendidos com excelência</div>
+      </div>
+      <div class="res-num-box fade-in">
+        <div class="res-num">98<span>%</span></div>
+        <div class="res-num-label">Índice de satisfação verificado</div>
+      </div>
+      <div class="res-num-box fade-in">
+        <div class="res-num">12<span>+</span></div>
+        <div class="res-num-label">Anos de experiência clínica</div>
+      </div>
+      <div class="res-num-box fade-in">
+        <div class="res-num">24<span>h</span></div>
+        <div class="res-num-label">Suporte online para pacientes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉDICOS -->
+<section class="medicos" id="medicos">
+  <div class="section-tag">Nossa equipe</div>
+  <h2 class="section-title">Especialistas dedicados<br>à sua saúde</h2>
+  <p class="section-desc">Profissionais altamente qualificados, com formação nas melhores universidades e constante atualização científica.</p>
+
+  <div class="med-grid">
+    <div class="med-card fade-in">
+      <div class="med-photo">👩‍⚕️</div>
+      <h3>Dra. Beatriz Almeida</h3>
+      <div class="esp">Medicina Integrativa</div>
+      <div class="crm">CRM/SP 58.340</div>
+    </div>
+    <div class="med-card fade-in">
+      <div class="med-photo">👨‍⚕️</div>
+      <h3>Dr. Carlos Mendonça</h3>
+      <div class="esp">Cardiologia</div>
+      <div class="crm">CRM/SP 72.891</div>
+    </div>
+    <div class="med-card fade-in">
+      <div class="med-photo">👩‍⚕️</div>
+      <h3>Dra. Fernanda Costa</h3>
+      <div class="esp">Neurologia</div>
+      <div class="crm">CRM/SP 64.209</div>
+    </div>
+    <div class="med-card fade-in">
+      <div class="med-photo">👨‍⚕️</div>
+      <h3>Dr. Rafael Torres</h3>
+      <div class="esp">Nutrologia</div>
+      <div class="crm">CRM/SP 81.433</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos" id="depoimentos">
+  <div class="dep-header">
+    <div class="section-tag">O que dizem nossos pacientes</div>
+    <h2 class="section-title">Histórias reais de<br>transformação e cura</h2>
+    <p class="section-desc">Cada relato representa uma jornada de cuidado, atenção e recuperação com nossa equipe.</p>
+  </div>
+
+  <div class="dep-grid">
+    <div class="dep-card fade-in">
+      <div class="dep-quote">"</div>
+      <p class="dep-text">A Vitale Saúde mudou minha relação com a saúde. Pela primeira vez me senti verdadeiramente ouvida e tratada como pessoa, não como número.</p>
+      <div class="dep-stars">★★★★★</div>
+      <div class="dep-author">
+        <div class="dep-avatar">M</div>
+        <div class="dep-name">
+          <strong>Marina Cavalcanti</strong>
+          <span>Paciente há 3 anos</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dep-card fade-in">
+      <div class="dep-quote">"</div>
+      <p class="dep-text">Em 4 meses de acompanhamento na clínica, resolvi problemas de saúde que carregava há anos. O atendimento é impecável do início ao fim.</p>
+      <div class="dep-stars">★★★★★</div>
+      <div class="dep-author">
+        <div class="dep-avatar">R</div>
+        <div class="dep-name">
+          <strong>Roberto Figueiredo</strong>
+          <span>Paciente há 1 ano</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dep-card fade-in">
+      <div class="dep-quote">"</div>
+      <p class="dep-text">Vim por indicação e me tornei fã. Os médicos são excepcionais, o ambiente é acolhedor e o resultado fala por si. Recomendo para toda a família.</p>
+      <div class="dep-stars">★★★★★</div>
+      <div class="dep-author">
+        <div class="dep-avatar">J</div>
+        <div class="dep-name">
+          <strong>Juliana Braga</strong>
+          <span>Paciente há 2 anos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDAMENTO -->
+<section class="agendamento" id="agendamento">
+  <div class="agenda-inner">
+    <div class="agenda-info">
+      <div class="section-tag">Agende agora</div>
+      <h2 class="section-title">Dê o primeiro passo para uma saúde melhor</h2>
+      <p>Preencha o formulário e nossa equipe entrará em contato em até 2 horas para confirmar o melhor horário para você.</p>
+      <ul class="agenda-features">
+        <li>
+          <div class="feat-icon">✓</div>
+          Confirmação rápida em até 2 horas úteis
+        </li>
+        <li>
+          <div class="feat-icon">🔒</div>
+          Seus dados são protegidos pela LGPD e total sigilo médico
+        </li>
+        <li>
+          <div class="feat-icon">📱</div>
+          Atendimento presencial ou teleconsulta disponível
+        </li>
+        <li>
+          <div class="feat-icon">💳</div>
+          Atendemos convênios e particulares com parcelamento
+        </li>
+      </ul>
+    </div>
+
+    <div class="agenda-form">
+      <h3>Agendar Consulta</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" placeholder="Seu nome">
+        </div>
+        <div class="form-group">
+          <label>Sobrenome</label>
+          <input type="text" placeholder="Seu sobrenome">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" placeholder="seu@email.com">
+      </div>
+      <div class="form-group">
+        <label>WhatsApp</label>
+        <input type="tel" placeholder="(00) 00000-0000">
+      </div>
+      <div class="form-group">
+        <label>Especialidade</label>
+        <select>
+          <option value="">Selecione a especialidade</option>
+          <option>Medicina Integrativa</option>
+          <option>Cardiologia Preventiva</option>
+          <option>Neurologia</option>
+          <option>Nutrologia Clínica</option>
+          <option>Medicina Funcional</option>
+          <option>Ortopedia</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Data preferida</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Período</label>
+          <select>
+            <option>Manhã</option>
+            <option>Tarde</option>
+            <option>Qualquer horário</option>
+          </select>
+        </div>
+      </div>
+      <button class="form-submit" type="button">
+        Solicitar Agendamento →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="text-decoration:none;">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="white" opacity="0.9"/><path d="M11 7h2v3h3v2h-3v3h-2v-3H8v-2h3V7z" fill="#0A6E55"/></svg>
+        </div>
+        <span class="logo-text">Vitale <span>Saúde</span></span>
+      </a>
+      <p class="footer-desc">Clínica de medicina integrativa e preventiva dedicada ao seu bem-estar completo. Cuidando de você com ciência, ética e humanidade.</p>
+      <div class="footer-contact">
+        <a href="tel:+551140002000">📞 (11) 4000-2000</a>
+        <a href="mailto:contato@vitalesaude.com.br">✉ contato@vitalesaude.com.br</a>
+        <a href="#">📍 Av. Paulista, 1000 — São Paulo, SP</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Especialidades</h4>
+      <ul>
+        <li><a href="#">Medicina Integrativa</a></li>
+        <li><a href="#">Cardiologia</a></li>
+        <li><a href="#">Neurologia</a></li>
+        <li><a href="#">Nutrologia</a></li>
+        <li><a href="#">Ortopedia</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Clínica</h4>
+      <ul>
+        <li><a href="#">Nossa história</a></li>
+        <li><a href="#">Equipe médica</a></li>
+        <li><a href="#">Convênios</a></li>
+        <li><a href="#">Blog de saúde</a></li>
+        <li><a href="#">Trabalhe conosco</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Paciente</h4>
+      <ul>
+        <li><a href="#">Portal do paciente</a></li>
+        <li><a href="#">Resultados de exames</a></li>
+        <li><a href="#">Teleconsulta</a></li>
+        <li><a href="#">Política de privacidade</a></li>
+        <li><a href="#">LGPD</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="copyright-notice">
+    <strong>⚠ Aviso de Direitos Autorais:</strong> Este website é um projeto demonstrativo desenvolvido por 
+    <strong>GS Web Production</strong> como exemplo de portfólio profissional. Todo o conteúdo, layout, design, código-fonte, 
+    identidade visual e elementos gráficos são de propriedade exclusiva da <strong>GS Web Production</strong>, 
+    protegidos pelas leis de direito autoral (Lei nº 9.610/98 — Brasil) e tratados internacionais de propriedade intelectual. 
+    A empresa "Vitale Saúde" é fictícia, criada exclusivamente para fins demonstrativos. 
+    Reprodução parcial ou total sem autorização expressa é proibida. © 2025 GS Web Production. Todos os direitos reservados.
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Vitale Saúde. Site desenvolvido por <a href="#">GS Web Production</a>. Todos os direitos reservados.</p>
+    <p>CRM/SP registrado. Informações para fins ilustrativos.</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/5511940002000" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fade in on scroll
+  const faders = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  faders.forEach(el => observer.observe(el));
+
+  // Form submit
+  document.querySelector('.form-submit').addEventListener('click', function() {
+    this.textContent = '✓ Solicitação enviada! Aguarde contato.';
+    this.style.background = '#12A07A';
+    this.style.cursor = 'default';
+    setTimeout(() => {
+      this.textContent = 'Solicitar Agendamento →';
+      this.style.background = '';
+      this.style.cursor = '';
+    }, 4000);
+  });
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

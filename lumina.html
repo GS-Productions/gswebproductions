@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Lumina Arquitetura — Espaços de Legado</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #170829;
+  --plum: #2D0A4E;
+  --violet: #5B1FA6;
+  --grape: #7C3AED;
+  --lavender: #A78BFA;
+  --lilac: #DDD6FE;
+  --fog: #F5F3FF;
+  --gold: #C9A96E;
+  --cream: #FBF9F7;
+  --white: #FFFFFF;
+  --muted: #8B7BAD;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+/* ═══ NAV ═══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 6vw;
+  transition:all 0.4s;
+}
+nav.scrolled{
+  background:rgba(23,8,41,0.96);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(167,139,250,0.1);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.lm{width:34px;height:34px;position:relative}
+.lm svg{width:100%;height:100%}
+.logo-txt{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--white);font-weight:700;letter-spacing:0.02em;line-height:1}
+.logo-txt span{display:block;font-family:'DM Sans',sans-serif;font-size:0.5rem;font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:var(--lavender);margin-top:2px}
+.nav-center{display:flex;gap:2.2rem;list-style:none}
+.nav-center a{font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s}
+.nav-center a:hover{color:var(--lavender)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-phone{font-size:0.78rem;color:rgba(255,255,255,0.4);letter-spacing:0.06em}
+.btn-nav{
+  padding:0.5rem 1.3rem;
+  background:linear-gradient(135deg,var(--grape),var(--violet));
+  color:var(--white);border:none;border-radius:6px;
+  font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:500;
+  cursor:pointer;letter-spacing:0.08em;
+  transition:opacity 0.2s,transform 0.2s;
+}
+.btn-nav:hover{opacity:0.88;transform:translateY(-1px)}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hbg span{width:22px;height:1.5px;background:var(--white);border-radius:2px}
+
+/* ═══ HERO — full-bleed diagonal split ═══ */
+#hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:55% 45%;
+  position:relative;overflow:hidden;
+}
+.hero-left{
+  background:var(--ink);
+  padding:10rem 5vw 6rem 8vw;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:2;
+  clip-path:polygon(0 0,100% 0,88% 100%,0 100%);
+}
+.hero-left::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 60%,rgba(91,31,166,0.45) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-noise{
+  position:absolute;inset:0;opacity:0.03;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.htag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2.5rem;
+  animation:up 0.9s ease both;
+}
+.htag-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.hero-h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,5.5vw,5rem);
+  line-height:1.06;font-weight:400;color:var(--white);
+  animation:up 0.9s ease 0.15s both;
+}
+.hero-h1 i{font-style:italic;color:var(--lavender)}
+.hero-p{
+  margin-top:2rem;font-size:0.95rem;line-height:1.8;
+  color:rgba(255,255,255,0.5);max-width:400px;font-weight:300;
+  animation:up 0.9s ease 0.25s both;
+}
+.hero-btns{
+  display:flex;gap:1rem;margin-top:3rem;flex-wrap:wrap;
+  animation:up 0.9s ease 0.35s both;
+}
+.btn-a{
+  padding:0.9rem 2rem;
+  background:var(--grape);color:var(--white);
+  border:none;border-radius:8px;
+  font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;
+  cursor:pointer;text-decoration:none;
+  box-shadow:0 8px 30px rgba(124,58,237,0.5);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-a:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(124,58,237,0.45)}
+.btn-b{
+  padding:0.9rem 2rem;
+  background:transparent;color:rgba(255,255,255,0.75);
+  border:1px solid rgba(167,139,250,0.3);border-radius:8px;
+  font-family:'DM Sans',sans-serif;font-size:0.85rem;
+  cursor:pointer;text-decoration:none;
+  transition:border-color 0.2s,color 0.2s,transform 0.2s;
+}
+.btn-b:hover{border-color:var(--lavender);color:var(--lavender);transform:translateY(-2px)}
+.hero-awards{
+  display:flex;gap:2rem;margin-top:4rem;
+  animation:up 0.9s ease 0.45s both;
+}
+.award{display:flex;align-items:center;gap:10px}
+.award-icon{
+  width:40px;height:40px;border-radius:8px;
+  background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.award-text{font-size:0.72rem;color:rgba(255,255,255,0.4);line-height:1.4}
+.award-text strong{display:block;color:rgba(255,255,255,0.75);font-size:0.8rem}
+
+.hero-right{
+  position:relative;background:var(--fog);
+  display:flex;align-items:center;justify-content:center;
+  padding-left:5%;
+}
+.hero-mockup{
+  position:relative;width:340px;
+  animation:fadeIn 1.2s ease 0.5s both;
+}
+.hm-main{
+  width:100%;aspect-ratio:3/4;border-radius:20px;
+  background:linear-gradient(145deg,#3D1A6B 0%,#7C3AED 60%,#A78BFA 100%);
+  box-shadow:0 40px 80px rgba(45,10,78,0.3);
+  overflow:hidden;position:relative;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:2rem;
+}
+.hm-lines{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);
+  background-size:30px 30px;
+}
+.hm-arch{
+  position:absolute;inset:0;display:flex;align-items:flex-end;
+  justify-content:center;gap:4px;padding:0 16px;overflow:hidden;
+}
+.hm-bar{background:rgba(255,255,255,0.1);border-radius:2px 2px 0 0}
+.hm-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;position:relative;z-index:1}
+.hm-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--white);position:relative;z-index:1;line-height:1.2}
+.hm-badge{
+  position:absolute;top:1.2rem;right:1.2rem;
+  background:var(--gold);color:var(--plum);
+  padding:0.3rem 0.9rem;border-radius:100px;
+  font-size:0.6rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;
+  z-index:1;
+}
+.hm-float{
+  position:absolute;bottom:-30px;left:-30px;
+  background:var(--white);border-radius:16px;
+  padding:1.4rem 1.8rem;
+  box-shadow:0 20px 50px rgba(45,10,78,0.15);
+  min-width:170px;
+}
+.hm-float-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;font-weight:700;color:var(--violet);line-height:1;
+}
+.hm-float-label{font-size:0.72rem;color:var(--muted);margin-top:4px}
+.hm-float2{
+  position:absolute;top:20px;right:-40px;
+  background:var(--plum);border-radius:12px;
+  padding:1rem 1.4rem;
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+.hm-float2 div:first-child{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--lavender);margin-bottom:4px}
+.hm-float2 div:last-child{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white)}
+
+@keyframes up{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+
+/* ═══ MARQUEE BAND ═══ */
+.marquee-band{
+  background:var(--plum);padding:1.2rem 0;overflow:hidden;
+  border-top:1px solid rgba(167,139,250,0.15);
+  border-bottom:1px solid rgba(167,139,250,0.15);
+}
+.marquee-track{
+  display:flex;gap:4rem;white-space:nowrap;
+  animation:marquee 22s linear infinite;
+}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(221,214,254,0.5);
+}
+.marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* ═══ SOBRE — bento grid ═══ */
+#sobre{padding:7rem 8vw;background:var(--cream)}
+.sobre-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:1.5rem;margin-top:4rem;
+}
+.sb-card{border-radius:20px;padding:2.8rem;position:relative;overflow:hidden}
+.sb-main{
+  grid-column:span 2;
+  background:var(--plum);color:var(--white);
+}
+.sb-main::before{
+  content:'';position:absolute;top:-40%;right:-10%;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(124,58,237,0.4) 0%,transparent 70%);
+}
+.sb-main-text{position:relative;z-index:1}
+.sb-main-text p{font-size:1.05rem;line-height:1.85;color:rgba(255,255,255,0.7);font-weight:300;max-width:520px}
+.sb-stat{background:var(--fog)}
+.sb-stat-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;color:var(--grape);line-height:1}
+.sb-stat-label{font-size:0.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.sb-wide{
+  grid-column:span 3;
+  background:linear-gradient(135deg,var(--grape),#4C1D95);
+  color:var(--white);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:2rem;
+}
+.sb-wide-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700}
+.sb-wide-label{font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:4px}
+.sb-item{text-align:center}
+
+/* ═══ SERVIÇOS — horizontal scroll cards ═══ */
+#servicos{padding:7rem 0;background:var(--ink);overflow:hidden}
+.srv-head{padding:0 8vw;margin-bottom:3rem}
+#servicos .section-tag{color:var(--lavender)}
+#servicos .section-tag::before{background:var(--lavender)}
+#servicos .section-title{color:var(--white)}
+#servicos .section-title em{color:var(--lavender)}
+.srv-scroll{
+  display:flex;gap:1.5rem;
+  padding:0.5rem 8vw 2rem;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+}
+.srv-scroll::-webkit-scrollbar{display:none}
+.srv-card{
+  flex-shrink:0;width:320px;scroll-snap-align:start;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(167,139,250,0.12);
+  border-radius:20px;padding:2.5rem;
+  transition:background 0.3s,border-color 0.3s,transform 0.3s;
+  cursor:default;
+}
+.srv-card:hover{
+  background:rgba(124,58,237,0.18);
+  border-color:rgba(167,139,250,0.35);
+  transform:translateY(-6px);
+}
+.srv-num{font-size:0.68rem;letter-spacing:0.2em;color:rgba(167,139,250,0.4);margin-bottom:2rem}
+.srv-icon{font-size:2rem;margin-bottom:1.5rem}
+.srv-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--white);margin-bottom:0.8rem;line-height:1.2}
+.srv-desc{font-size:0.85rem;line-height:1.75;color:rgba(255,255,255,0.45);font-weight:300}
+.srv-link{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:2rem;font-size:0.78rem;letter-spacing:0.1em;
+  color:var(--lavender);text-decoration:none;
+  transition:gap 0.2s;
+}
+.srv-card:hover .srv-link{gap:12px}
+
+/* ═══ PORTFOLIO — magazine layout ═══ */
+#portfolio{padding:7rem 8vw;background:var(--cream)}
+.port-layout{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-template-rows:280px 280px;
+  gap:12px;margin-top:4rem;
+}
+.pi{
+  position:relative;overflow:hidden;border-radius:16px;cursor:pointer;
+}
+.pi:nth-child(1){grid-column:1/8;grid-row:1/3}
+.pi:nth-child(2){grid-column:8/13;grid-row:1/2}
+.pi:nth-child(3){grid-column:8/11;grid-row:2/3}
+.pi:nth-child(4){grid-column:11/13;grid-row:2/3}
+.pi-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform 0.7s ease;
+}
+.pi:hover .pi-bg{transform:scale(1.07)}
+.pi-bg-1{background:linear-gradient(150deg,#3D1A6B 0%,#7C3AED 45%,#5B21B6 100%)}
+.pi-bg-2{background:linear-gradient(135deg,#4C1D95,#8B5CF6)}
+.pi-bg-3{background:linear-gradient(120deg,#6D28D9,#A78BFA)}
+.pi-bg-4{background:linear-gradient(140deg,#2D0A4E,#5B1FA6)}
+.pi-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,2,20,0.9) 0%,rgba(10,2,20,0.1) 50%,transparent 100%)}
+.pi-body{position:absolute;bottom:0;left:0;right:0;padding:1.8rem;transform:translateY(4px);transition:transform 0.3s}
+.pi:hover .pi-body{transform:translateY(0)}
+.pi-cat{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.pi-name{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--white);line-height:1.2}
+.pi:nth-child(1) .pi-name{font-size:2rem}
+.pi-loc{font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:4px}
+.pi-arrow{
+  position:absolute;top:1.2rem;right:1.2rem;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,0.08);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);font-size:0.85rem;
+  opacity:0;transition:opacity 0.3s;
+}
+.pi:hover .pi-arrow{opacity:1}
+/* arch buildings decoration */
+.pi-arch{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;gap:5px;padding:0 15px;overflow:hidden}
+.pb{background:rgba(255,255,255,0.07);border-radius:2px 2px 0 0}
+
+/* ═══ NÚMEROS — band ═══ */
+.nums-band{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--plum);
+}
+.nb{
+  padding:4rem 3rem;
+  border-right:1px solid rgba(167,139,250,0.1);
+  text-align:center;
+  transition:background 0.3s;
+}
+.nb:last-child{border-right:none}
+.nb:hover{background:rgba(124,58,237,0.2)}
+.nb-num{
+  font-family:'Playfair Display',serif;
+  font-size:3rem;font-weight:700;color:var(--white);line-height:1;
+}
+.nb-unit{font-size:1.5rem;color:var(--lavender)}
+.nb-label{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:10px}
+
+/* ═══ PROCESSO — timeline ═══ */
+#processo{padding:7rem 8vw;background:var(--fog)}
+.proc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:start;margin-top:4rem}
+.proc-tl{position:relative}
+.proc-line{
+  position:absolute;left:18px;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,var(--grape),rgba(124,58,237,0.1));
+}
+.proc-step{
+  display:flex;gap:2rem;padding-bottom:3rem;position:relative;z-index:1;
+}
+.proc-step:last-child{padding-bottom:0}
+.proc-dot{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  background:var(--white);border:2px solid var(--grape);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:0.8rem;
+  font-weight:700;color:var(--grape);
+  box-shadow:0 0 0 4px rgba(124,58,237,0.1);
+}
+.proc-content{}
+.proc-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--plum);margin-bottom:0.5rem}
+.proc-desc{font-size:0.85rem;line-height:1.75;color:var(--muted);font-weight:300}
+.proc-visual{position:sticky;top:8rem}
+.pv-box{
+  background:var(--plum);border-radius:24px;
+  padding:3rem;position:relative;overflow:hidden;
+}
+.pv-box::after{
+  content:'';position:absolute;bottom:-30%;right:-20%;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(124,58,237,0.4) 0%,transparent 70%);
+}
+.pv-icon{font-size:2.5rem;margin-bottom:1.5rem}
+.pv-q{
+  font-family:'Playfair Display',serif;font-size:1.6rem;
+  font-style:italic;color:var(--white);line-height:1.4;
+  position:relative;z-index:1;
+}
+.pv-author{margin-top:2rem;font-size:0.8rem;color:var(--lavender);position:relative;z-index:1}
+.pv-metrics{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem;
+  position:relative;z-index:1;
+}
+.pv-m{background:rgba(255,255,255,0.06);border-radius:12px;padding:1.2rem}
+.pv-m-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--white);font-weight:700}
+.pv-m-label{font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:4px}
+
+/* ═══ DEPOIMENTOS ═══ */
+#depoimentos{padding:7rem 8vw;background:var(--ink)}
+#depoimentos .section-tag{color:var(--lavender)}
+#depoimentos .section-tag::before{background:var(--lavender)}
+#depoimentos .section-title{color:var(--white)}
+#depoimentos .section-title em{color:var(--lavender)}
+.dep-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:1.5rem;margin-top:4rem}
+.dep-main{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(167,139,250,0.15);
+  border-radius:24px;padding:3rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.dep-quote{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-style:italic;color:var(--white);
+  line-height:1.6;
+}
+.dep-mark{font-size:4rem;color:var(--grape);line-height:0.5;margin-bottom:1.5rem;font-family:Georgia,serif}
+.dep-author{display:flex;align-items:center;gap:14px;margin-top:2.5rem}
+.dep-av{
+  width:48px;height:48px;border-radius:50%;
+  background:linear-gradient(135deg,var(--violet),var(--lavender));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);
+}
+.dep-name{font-size:0.9rem;font-weight:500;color:var(--white)}
+.dep-role{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:2px}
+.dep-stars{color:var(--gold);margin-bottom:1.5rem;font-size:0.9rem;letter-spacing:2px}
+.dep-side{display:flex;flex-direction:column;gap:1.5rem}
+.dep-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(167,139,250,0.12);
+  border-radius:18px;padding:2rem;
+  transition:background 0.3s,border-color 0.3s;flex:1;
+}
+.dep-card:hover{background:rgba(124,58,237,0.12);border-color:rgba(167,139,250,0.3)}
+.dep-card-q{font-size:0.9rem;line-height:1.75;color:rgba(255,255,255,0.55);font-style:italic;font-weight:300}
+.dep-card-author{display:flex;align-items:center;gap:10px;margin-top:1.5rem}
+.dep-card-av{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--plum),var(--grape));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;color:var(--white);
+}
+
+/* ═══ CTA — big full-bleed ═══ */
+#cta{
+  padding:9rem 8vw;
+  background:linear-gradient(135deg,var(--plum) 0%,var(--grape) 60%,#6D28D9 100%);
+  text-align:center;position:relative;overflow:hidden;
+}
+#cta::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+#cta::after{
+  content:'';position:absolute;bottom:-30%;left:50%;transform:translateX(-50%);
+  width:800px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(196,181,253,0.15) 0%,transparent 70%);
+}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.5rem;
+}
+.cta-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,5vw,4rem);
+  color:var(--white);font-weight:400;line-height:1.1;
+}
+.cta-title em{font-style:italic;color:var(--lilac)}
+.cta-sub{font-size:1rem;color:rgba(255,255,255,0.55);margin-top:1.2rem;font-weight:300}
+.cta-btns{display:flex;gap:1rem;justify-content:center;margin-top:3rem;flex-wrap:wrap}
+.btn-cta-a{
+  padding:1.1rem 2.8rem;
+  background:var(--white);color:var(--grape);
+  border:none;border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;
+  cursor:pointer;transition:background 0.2s,transform 0.2s;
+}
+.btn-cta-a:hover{background:var(--gold);transform:translateY(-2px)}
+.btn-cta-b{
+  padding:1.1rem 2.8rem;
+  background:transparent;color:rgba(255,255,255,0.8);
+  border:1px solid rgba(255,255,255,0.3);border-radius:10px;
+  font-family:'DM Sans',sans-serif;font-size:0.9rem;
+  cursor:pointer;transition:border-color 0.2s,transform 0.2s;
+}
+.btn-cta-b:hover{border-color:var(--white);transform:translateY(-2px)}
+.cta-trust{
+  display:flex;align-items:center;justify-content:center;gap:2rem;
+  margin-top:3rem;flex-wrap:wrap;
+}
+.trust-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.75rem;color:rgba(255,255,255,0.4);
+}
+.trust-item::before{content:'✓';color:var(--gold)}
+
+/* ═══ FOOTER ═══ */
+footer{background:#0E0220;padding:6rem 8vw 0}
+.ft-top{
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:4rem;padding-bottom:4rem;
+  border-bottom:1px solid rgba(167,139,250,0.1);
+}
+.ft-brand{}
+.ft-logo{display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:1.5rem}
+.ft-tagline{font-size:0.88rem;line-height:1.8;color:rgba(255,255,255,0.35);max-width:260px;font-weight:300}
+.ft-social{display:flex;gap:8px;margin-top:2rem}
+.ft-soc{
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.12);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.4);font-size:0.78rem;
+  text-decoration:none;transition:all 0.2s;cursor:pointer;
+}
+.ft-soc:hover{background:var(--grape);border-color:var(--grape);color:var(--white)}
+.ft-col h5{
+  font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--lavender);margin-bottom:1.5rem;font-weight:500;
+}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:0.85rem}
+.ft-col ul a{
+  font-size:0.85rem;color:rgba(255,255,255,0.35);text-decoration:none;
+  transition:color 0.2s;font-weight:300;
+}
+.ft-col ul a:hover{color:rgba(255,255,255,0.8)}
+.ft-mid{
+  padding:2.5rem 0;
+  border-bottom:1px solid rgba(167,139,250,0.1);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1.5rem;
+}
+.ft-awards{display:flex;gap:2rem;flex-wrap:wrap}
+.ft-award{
+  display:flex;align-items:center;gap:10px;
+  padding:0.7rem 1.2rem;
+  background:rgba(167,139,250,0.06);
+  border:1px solid rgba(167,139,250,0.1);
+  border-radius:8px;
+}
+.ft-award-icon{font-size:1.1rem}
+.ft-award-text{font-size:0.72rem;color:rgba(255,255,255,0.4);line-height:1.4}
+.ft-award-text strong{color:rgba(255,255,255,0.65);display:block}
+.ft-cert{font-size:0.72rem;color:rgba(255,255,255,0.25);text-align:right}
+.ft-cert span{display:block;color:rgba(255,255,255,0.4)}
+
+/* Bottom bar */
+.ft-bottom{
+  padding:1.8rem 0;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.25)}
+.ft-dev{
+  font-size:0.72rem;color:rgba(255,255,255,0.2);
+  display:flex;align-items:center;gap:8px;
+}
+.ft-dev a{color:rgba(167,139,250,0.5);text-decoration:none;transition:color 0.2s}
+.ft-dev a:hover{color:var(--lavender)}
+.ft-dev-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:0.3rem 0.8rem;
+  background:rgba(124,58,237,0.15);
+  border:1px solid rgba(124,58,237,0.25);
+  border-radius:100px;
+  color:rgba(167,139,250,0.6);font-size:0.68rem;letter-spacing:0.1em;
+  text-decoration:none;transition:all 0.2s;
+}
+.ft-dev-badge:hover{background:rgba(124,58,237,0.3);color:var(--lavender)}
+.ft-dev-badge::before{content:'⚡';font-size:0.7rem}
+.ft-links{display:flex;gap:1.5rem}
+.ft-links a{font-size:0.72rem;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s}
+.ft-links a:hover{color:rgba(255,255,255,0.5)}
+
+/* ═══ SHARED HELPERS ═══ */
+.section-tag{
+  font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--grape);margin-bottom:1rem;
+  display:flex;align-items:center;gap:10px;
+}
+.section-tag::before{content:'';display:block;width:20px;height:1px;background:var(--grape)}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4vw,3.2rem);
+  line-height:1.1;font-weight:400;color:var(--plum);
+}
+.section-title em{font-style:italic;color:var(--grape)}
+
+/* ═══ REVEAL ═══ */
+.r{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.r.on{opacity:1;transform:translateY(0)}
+.r1{transition-delay:0.1s}.r2{transition-delay:0.2s}.r3{transition-delay:0.3s}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  #hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{clip-path:none;padding:9rem 8vw 5rem}
+  .hero-right{display:none}
+  .sobre-grid{grid-template-columns:1fr 1fr}
+  .sb-main{grid-column:span 2}
+  .sb-wide{grid-column:span 2}
+  .port-layout{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .pi:nth-child(1){grid-column:span 2;grid-row:auto}
+  .pi:nth-child(2){grid-column:span 2;grid-row:auto}
+  .pi:nth-child(3){grid-column:span 1}
+  .pi:nth-child(4){grid-column:span 1}
+  .nums-band{grid-template-columns:1fr 1fr}
+  .proc-wrap{grid-template-columns:1fr}
+  .proc-visual{display:none}
+  .dep-grid{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr 1fr}
+  .ft-mid{flex-direction:column;align-items:flex-start}
+  .ft-cert{text-align:left}
+}
+@media(max-width:720px){
+  nav .nav-center,.nav-right .nav-phone{display:none}
+  .hbg{display:flex}
+  .sobre-grid{grid-template-columns:1fr}
+  .sb-main{grid-column:span 1}
+  .sb-wide{grid-column:span 1;flex-direction:column;gap:1.5rem}
+  .nums-band{grid-template-columns:1fr 1fr}
+  .nb{padding:2.5rem 1.5rem}
+  .port-layout{grid-template-columns:1fr;grid-template-rows:auto}
+  .pi{height:260px}
+  .pi:nth-child(1){grid-column:span 1}
+  .pi:nth-child(2){grid-column:span 1}
+  .ft-top{grid-template-columns:1fr}
+  .ft-bottom{flex-direction:column;align-items:flex-start;gap:1rem}
+  .hero-awards{flex-direction:column;gap:1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="lm">
+      <svg viewBox="0 0 34 34" fill="none">
+        <rect x="0" y="0" width="15" height="15" rx="3" fill="#5B1FA6"/>
+        <rect x="19" y="0" width="15" height="15" rx="3" fill="#8B5CF6"/>
+        <rect x="0" y="19" width="15" height="15" rx="3" fill="#C4B5FD"/>
+        <rect x="19" y="19" width="15" height="15" rx="3" fill="rgba(196,181,253,0.3)"/>
+      </svg>
+    </div>
+    <div class="logo-txt">Studio Lumina<span>Arquitetura</span></div>
+  </a>
+  <ul class="nav-center">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#depoimentos">Clientes</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-phone">(11) 9 9999-0000</span>
+    <button class="btn-nav">Consulta Gratuita</button>
+  </div>
+  <div class="hbg" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-noise"></div>
+    <div class="htag"><div class="htag-dot"></div>Segmento Premium · São Paulo · CAU Registrado</div>
+    <h1 class="hero-h1">
+      Espaços que<br>
+      carregam<br>
+      <i>sua essência.</i>
+    </h1>
+    <p class="hero-p">Projetamos residências e empreendimentos de alto padrão com design autoral, execução impecável e uma entrega que supera expectativas — sempre.</p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-a">Explorar Portfólio</a>
+      <a href="#cta" class="btn-b">Falar com Arquiteto →</a>
+    </div>
+    <div class="hero-awards">
+      <div class="award">
+        <div class="award-icon">🏆</div>
+        <div class="award-text"><strong>Prêmio ABD 2024</strong>Melhor Escritório SP</div>
+      </div>
+      <div class="award">
+        <div class="award-icon">⭐</div>
+        <div class="award-text"><strong>4.9 / 5.0</strong>340+ avaliações</div>
+      </div>
+      <div class="award">
+        <div class="award-icon">🌿</div>
+        <div class="award-text"><strong>LEED Certificado</strong>Projetos sustentáveis</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-mockup">
+      <div class="hm-main">
+        <div class="hm-lines"></div>
+        <div class="hm-arch">
+          <div class="hm-bar" style="width:28px;height:120px"></div>
+          <div class="hm-bar" style="width:40px;height:180px;background:rgba(255,255,255,0.15)"></div>
+          <div class="hm-bar" style="width:32px;height:140px"></div>
+          <div class="hm-bar" style="width:55px;height:220px;background:rgba(255,255,255,0.12)"></div>
+          <div class="hm-bar" style="width:38px;height:160px"></div>
+          <div class="hm-bar" style="width:25px;height:100px"></div>
+        </div>
+        <div class="hm-badge">Premium</div>
+        <div class="hm-label">Projeto Destaque · 2025</div>
+        <div class="hm-title">Residência<br>Jardim Europa</div>
+      </div>
+      <div class="hm-float">
+        <div class="hm-float-num">340+</div>
+        <div class="hm-float-label">Projetos entregues</div>
+      </div>
+      <div class="hm-float2">
+        <div>Em execução</div>
+        <div>12 obras ativas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-band">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span> Arquitetura Residencial</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Design de Interiores</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Projetos Comerciais</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Renderização 3D</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Gestão de Obra</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Arquitetura Sustentável</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Consultoria Urbanística</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Arquitetura Residencial</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Design de Interiores</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Projetos Comerciais</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Renderização 3D</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Gestão de Obra</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Arquitetura Sustentável</span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Consultoria Urbanística</span>
+  </div>
+</div>
+
+<!-- ── SOBRE — bento ── -->
+<section id="sobre">
+  <div class="r">
+    <div class="section-tag">Quem somos</div>
+    <h2 class="section-title">Doze anos criando<br><em>espaços de referência</em></h2>
+  </div>
+  <div class="sobre-grid">
+    <div class="sb-card sb-main r r1">
+      <div class="sb-main-text">
+        <p>Somos um escritório de arquitetura premium com sede em São Paulo. Nossa filosofia une rigor técnico, sensibilidade estética e profundo entendimento do cliente para criar projetos que transcendem o ordinário. Cada obra é uma oportunidade de transformar espaços em experiências únicas e inesquecíveis.</p>
+      </div>
+    </div>
+    <div class="sb-card sb-stat r r2">
+      <div class="sb-stat-num">98%</div>
+      <div class="sb-stat-label">Taxa de satisfação<br>em projetos entregues</div>
+    </div>
+    <div class="sb-card sb-stat r r1" style="background:#EEE8FF">
+      <div class="sb-stat-num" style="color:#4C1D95">12+</div>
+      <div class="sb-stat-label">Anos de excelência<br>no mercado premium</div>
+    </div>
+    <div class="sb-card sb-stat r r2" style="background:#F0EBFF">
+      <div class="sb-stat-num" style="color:#6D28D9">340</div>
+      <div class="sb-stat-label">Projetos executados<br>em São Paulo e região</div>
+    </div>
+    <div class="sb-card sb-wide r">
+      <div class="sb-item">
+        <div class="sb-wide-num">Residencial</div>
+        <div class="sb-wide-label">Alto padrão</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-wide-num">Comercial</div>
+        <div class="sb-wide-label">Corporativo & Varejo</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-wide-num">Hospitalidade</div>
+        <div class="sb-wide-label">Hotéis & Resorts</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-wide-num">Sustentável</div>
+        <div class="sb-wide-label">LEED & Bioclimático</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVIÇOS ── -->
+<section id="servicos">
+  <div class="srv-head r">
+    <div class="section-tag">O que fazemos</div>
+    <h2 class="section-title">Serviços de <em>alto padrão</em></h2>
+  </div>
+  <div class="srv-scroll">
+    <div class="srv-card">
+      <div class="srv-num">01 / 06</div>
+      <div class="srv-icon">🏛️</div>
+      <div class="srv-title">Arquitetura Residencial</div>
+      <p class="srv-desc">Casas e apartamentos de luxo com identidade autoral. Do briefing ao habite-se, com acompanhamento completo e entrega impecável.</p>
+      <a href="#" class="srv-link">Saiba mais →</a>
+    </div>
+    <div class="srv-card">
+      <div class="srv-num">02 / 06</div>
+      <div class="srv-icon">🏢</div>
+      <div class="srv-title">Arquitetura Comercial</div>
+      <p class="srv-desc">Escritórios, lojas e empreendimentos que comunicam a essência da sua marca. Ambientes que convertem e fidelizam clientes.</p>
+      <a href="#" class="srv-link">Saiba mais →</a>
+    </div>
+    <div class="srv-card">
+      <div class="srv-num">03 / 06</div>
+      <div class="srv-icon">✨</div>
+      <div class="srv-title">Design de Interiores</div>
+      <p class="srv-desc">Curadoria de materiais, mobiliário e iluminação para atmosferas únicas. Cada detalhe pensado para proporcionar experiências memoráveis.</p>
+      <a href="#" class="srv-link">Saiba mais →</a>
+    </div>
+    <div class="srv-card">
+      <div class="srv-num">04 / 06</div>
+      <div class="srv-icon">🔮</div>
+      <div class="srv-title">Renderização 3D</div>
+      <p class="srv-desc">Visualização fotorrealista antes de iniciar a obra. Tecnologia de ponta para antecipar cada detalhe do espaço final com precisão.</p>
+      <a href="#" class="srv-link">Saiba mais →</a>
+    </div>
+    <div class="srv-card">
+      <div class="srv-num">05 / 06</div>
+      <div class="srv-icon">🌿</div>
+      <div class="srv-title">Arquitetura Sustentável</div>
+      <p class="srv-desc">Projetos bioclimáticos com eficiência energética e uso consciente de materiais. Beleza com responsabilidade ambiental.</p>
+      <a href="#" class="srv-link">Saiba mais →</a>
+    </div>
+    <div class="srv-card">
+      <div class="srv-num">06 / 06</div>
+      <div class="srv-icon">📐</div>
+      <div class="srv-title">Gestão de Obra</div>
+      <p class="srv-desc">Acompanhamento técnico, gestão de fornecedores e controle de qualidade. Garantia de execução fiel ao projeto em prazo e custo.</p>
+      <a href="#" class="srv-link">Saiba mais →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PORTFOLIO ── -->
+<section id="portfolio">
+  <div class="section-header r">
+    <div class="section-tag">Portfólio selecionado</div>
+    <h2 class="section-title">Obras que <em>falam por si</em></h2>
+  </div>
+  <div class="port-layout r">
+    <div class="pi">
+      <div class="pi-bg pi-bg-1"></div>
+      <div class="pi-arch">
+        <div class="pb" style="width:35px;height:160px"></div>
+        <div class="pb" style="width:55px;height:240px;background:rgba(255,255,255,0.12)"></div>
+        <div class="pb" style="width:40px;height:190px"></div>
+        <div class="pb" style="width:65px;height:280px;background:rgba(255,255,255,0.1)"></div>
+        <div class="pb" style="width:38px;height:200px"></div>
+      </div>
+      <div class="pi-shade"></div>
+      <div class="pi-arrow">↗</div>
+      <div class="pi-body">
+        <div class="pi-cat">Residencial Premium</div>
+        <div class="pi-name">Torre Lumina Jardins</div>
+        <div class="pi-loc">Jardins, São Paulo — 2024</div>
+      </div>
+    </div>
+    <div class="pi">
+      <div class="pi-bg pi-bg-2"></div>
+      <div class="pi-shade"></div>
+      <div class="pi-arrow">↗</div>
+      <div class="pi-body">
+        <div class="pi-cat">Corporativo</div>
+        <div class="pi-name">Sede Grupo Ágora</div>
+        <div class="pi-loc">Alphaville — 2024</div>
+      </div>
+    </div>
+    <div class="pi">
+      <div class="pi-bg pi-bg-3"></div>
+      <div class="pi-shade"></div>
+      <div class="pi-arrow">↗</div>
+      <div class="pi-body">
+        <div class="pi-cat">Hospitalidade</div>
+        <div class="pi-name">Boutique Céleste</div>
+        <div class="pi-loc">Campos do Jordão — 2023</div>
+      </div>
+    </div>
+    <div class="pi">
+      <div class="pi-bg pi-bg-4"></div>
+      <div class="pi-shade"></div>
+      <div class="pi-arrow">↗</div>
+      <div class="pi-body">
+        <div class="pi-cat">Varejo Luxo</div>
+        <div class="pi-name">Loja Aura</div>
+        <div class="pi-loc">Oscar Freire — 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NÚMEROS ── -->
+<div class="nums-band r">
+  <div class="nb">
+    <div class="nb-num">340<span class="nb-unit">+</span></div>
+    <div class="nb-label">Projetos entregues</div>
+  </div>
+  <div class="nb">
+    <div class="nb-num">12<span class="nb-unit">+</span></div>
+    <div class="nb-label">Anos no mercado</div>
+  </div>
+  <div class="nb">
+    <div class="nb-num">98<span class="nb-unit">%</span></div>
+    <div class="nb-label">Satisfação dos clientes</div>
+  </div>
+  <div class="nb">
+    <div class="nb-num">4<span class="nb-unit">×</span></div>
+    <div class="nb-label">Premiação nacional</div>
+  </div>
+</div>
+
+<!-- ── PROCESSO ── -->
+<section id="processo">
+  <div class="r">
+    <div class="section-tag">Como trabalhamos</div>
+    <h2 class="section-title">Processo <em>transparente</em><br>do começo ao fim</h2>
+  </div>
+  <div class="proc-wrap">
+    <div class="proc-tl r">
+      <div class="proc-line"></div>
+      <div class="proc-step">
+        <div class="proc-dot">01</div>
+        <div class="proc-content">
+          <div class="proc-title">Briefing & Imersão</div>
+          <p class="proc-desc">Mergulhamos na sua história, estilo de vida e aspirações. Escuta ativa, análise do espaço e levantamento de todas as expectativas antes de traçar uma linha.</p>
+        </div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot">02</div>
+        <div class="proc-content">
+          <div class="proc-title">Conceito & Partido</div>
+          <p class="proc-desc">Desenvolvemos o conceito arquitetônico com estudos de volumetria, implantação, fluxos e identidade visual. Apresentação em 3D para validação com o cliente.</p>
+        </div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot">03</div>
+        <div class="proc-content">
+          <div class="proc-title">Projeto Executivo</div>
+          <p class="proc-desc">Detalhamento técnico completo: especificação de materiais, compatibilização de sistemas (estrutural, elétrico, hidráulico) e documentação para aprovação.</p>
+        </div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot">04</div>
+        <div class="proc-content">
+          <div class="proc-title">Acompanhamento de Obra</div>
+          <p class="proc-desc">Visitas técnicas semanais, gestão de fornecedores e controle de qualidade rigoroso. Relatórios em tempo real via plataforma exclusiva para clientes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="proc-visual r r2">
+      <div class="pv-box">
+        <div class="pv-icon">💬</div>
+        <div class="pv-q">"Não entregamos plantas — entregamos a realização de um sonho, com a segurança de quem domina cada etapa."</div>
+        <div class="pv-author">— Carla Mendes, Sócia Fundadora · Studio Lumina</div>
+        <div class="pv-metrics">
+          <div class="pv-m">
+            <div class="pv-m-num">100%</div>
+            <div class="pv-m-label">Aprovação CAU</div>
+          </div>
+          <div class="pv-m">
+            <div class="pv-m-num">4.9★</div>
+            <div class="pv-m-label">Avaliação Google</div>
+          </div>
+          <div class="pv-m">
+            <div class="pv-m-num">30d</div>
+            <div class="pv-m-label">Entrega conceito</div>
+          </div>
+          <div class="pv-m">
+            <div class="pv-m-num">0%</div>
+            <div class="pv-m-label">Obras abandonadas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DEPOIMENTOS ── -->
+<section id="depoimentos">
+  <div class="r">
+    <div class="section-tag">Depoimentos</div>
+    <h2 class="section-title">Clientes que <em>viraram fãs</em></h2>
+  </div>
+  <div class="dep-grid r">
+    <div class="dep-main">
+      <div>
+        <div class="dep-stars">★★★★★</div>
+        <div class="dep-mark">"</div>
+        <p class="dep-quote">A Studio Lumina transformou nosso imóvel em algo muito além do que sonhamos. Cada detalhe foi pensado com maestria e cuidado genuíno — da primeira reunião até a entrega das chaves.</p>
+      </div>
+      <div class="dep-author">
+        <div class="dep-av">MC</div>
+        <div>
+          <div class="dep-name">Mariana Cavalcante</div>
+          <div class="dep-role">Residência Jardins · São Paulo</div>
+        </div>
+      </div>
+    </div>
+    <div class="dep-side">
+      <div class="dep-card">
+        <div class="dep-stars" style="font-size:0.75rem;margin-bottom:1rem">★★★★★</div>
+        <p class="dep-card-q">"Processo impecável, comunicação transparente e resultado final de alto nível. Superaram todas as expectativas para nossa nova sede."</p>
+        <div class="dep-card-author">
+          <div class="dep-card-av">RB</div>
+          <div>
+            <div style="font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.7)">Roberto Bastos</div>
+            <div style="font-size:0.72rem;color:rgba(255,255,255,0.3)">CEO · Grupo Ágora</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars" style="font-size:0.75rem;margin-bottom:1rem">★★★★★</div>
+        <p class="dep-card-q">"A sensibilidade da equipe para entender nossa família e criar um lar que nos representa foi extraordinária. Recomendamos sem hesitar!"</p>
+        <div class="dep-card-author">
+          <div class="dep-card-av">AF</div>
+          <div>
+            <div style="font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.7)">Amanda & Pedro Fontes</div>
+            <div style="font-size:0.72rem;color:rgba(255,255,255,0.3)">Casa Alphaville · 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="cta">
+  <div class="cta-inner r">
+    <div class="cta-tag"><span>✦</span> Consulta gratuita disponível</div>
+    <h2 class="cta-title">Vamos criar seu próximo<br><em>espaço de legado?</em></h2>
+    <p class="cta-sub">Nossa equipe responde em até 24 horas. Sem compromisso, sem burocracia.</p>
+    <div class="cta-btns">
+      <button class="btn-cta-a">Agendar Consulta Gratuita</button>
+      <button class="btn-cta-b">Ver Portfólio Completo</button>
+    </div>
+    <div class="cta-trust">
+      <span class="trust-item">Resposta em 24h</span>
+      <span class="trust-item">CAU Registrado</span>
+      <span class="trust-item">Contrato transparente</span>
+      <span class="trust-item">Sem taxa de visita</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand">
+      <a href="#" class="ft-logo">
+        <div class="lm">
+          <svg viewBox="0 0 34 34" fill="none">
+            <rect x="0" y="0" width="15" height="15" rx="3" fill="#5B1FA6"/>
+            <rect x="19" y="0" width="15" height="15" rx="3" fill="#8B5CF6"/>
+            <rect x="0" y="19" width="15" height="15" rx="3" fill="#C4B5FD"/>
+            <rect x="19" y="19" width="15" height="15" rx="3" fill="rgba(196,181,253,0.2)"/>
+          </svg>
+        </div>
+        <div class="logo-txt">Studio Lumina<span>Arquitetura</span></div>
+      </a>
+      <p class="ft-tagline">Arquitetura de alto padrão que transforma espaços em experiências únicas e inesquecíveis desde 2012.</p>
+      <div class="ft-social">
+        <a class="ft-soc" href="#" title="Instagram">ig</a>
+        <a class="ft-soc" href="#" title="LinkedIn">in</a>
+        <a class="ft-soc" href="#" title="Pinterest">pt</a>
+        <a class="ft-soc" href="#" title="Houzz">hz</a>
+        <a class="ft-soc" href="#" title="YouTube">yt</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h5>Serviços</h5>
+      <ul>
+        <li><a href="#">Arquitetura Residencial</a></li>
+        <li><a href="#">Arquitetura Comercial</a></li>
+        <li><a href="#">Design de Interiores</a></li>
+        <li><a href="#">Renderização 3D</a></li>
+        <li><a href="#">Arquitetura Sustentável</a></li>
+        <li><a href="#">Gestão de Obra</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="#">Sobre o Studio</a></li>
+        <li><a href="#">Portfólio</a></li>
+        <li><a href="#">Processo Criativo</a></li>
+        <li><a href="#">Prêmios & Reconhecimentos</a></li>
+        <li><a href="#">Blog de Arquitetura</a></li>
+        <li><a href="#">Trabalhe Conosco</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Contato</h5>
+      <ul>
+        <li><a href="#">contato@studiolumina.com.br</a></li>
+        <li><a href="#">(11) 9 9999-0000</a></li>
+        <li><a href="#">Rua Augusta, 1200 — Jardins</a></li>
+        <li><a href="#">São Paulo — SP, 01304-001</a></li>
+        <li><a href="#">Seg–Sex: 9h às 18h</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ft-mid">
+    <div class="ft-awards">
+      <div class="ft-award">
+        <div class="ft-award-icon">🏆</div>
+        <div class="ft-award-text"><strong>Prêmio ABD 2024</strong>Melhor escritório SP</div>
+      </div>
+      <div class="ft-award">
+        <div class="ft-award-icon">🌿</div>
+        <div class="ft-award-text"><strong>LEED Certified</strong>Projetos sustentáveis</div>
+      </div>
+      <div class="ft-award">
+        <div class="ft-award-icon">⭐</div>
+        <div class="ft-award-text"><strong>4.9 · Google Reviews</strong>340+ avaliações</div>
+      </div>
+    </div>
+    <div class="ft-cert">
+      <span>CAU/SP · Registro A000000-0</span>
+      CNPJ 00.000.000/0001-00
+    </div>
+  </div>
+
+  <div class="ft-bottom">
+    <p class="ft-copy">© 2025 Studio Lumina Arquitetura. Todos os direitos reservados.</p>
+    <div class="ft-links">
+      <a href="#">Privacidade</a>
+      <a href="#">Termos</a>
+      <a href="#">Cookies</a>
+    </div>
+    <div class="ft-dev">
+      Desenvolvido por
+      <a class="ft-dev-badge" href="#" title="GS Web Productions">GS Web Productions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+  // trigger on load
+  nav.classList.add('scrolled');
+
+  // Reveal on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+  // Parallax hero
+  window.addEventListener('scroll', () => {
+    const hl = document.querySelector('.hero-left');
+    if (hl) hl.style.backgroundPositionY = window.scrollY * 0.15 + 'px';
+  });
+</script>
+</body>
+</html>

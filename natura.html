@@ -1,0 +1,1167 @@
+cat > /mnt/user-data/outputs/natura-sucos.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natura Sucos Orgânicos — Puro. Natural. Vivo.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:   #1A3C2A;
+  --emerald:  #2D6A4F;
+  --leaf:     #52B788;
+  --mint:     #95D5B2;
+  --sage:     #D8F3DC;
+  --cream:    #F8F5EF;
+  --citrus:   #F4A228;
+  --tangerine:#E87C2A;
+  --flame:    #D64F12;
+  --white:    #FEFEFE;
+  --bark:     #3D2B1F;
+  --muted:    #6B8C7A;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--forest);overflow-x:hidden}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 6vw;
+  transition:all 0.4s;
+}
+nav.scrolled{
+  background:rgba(26,60,42,0.96);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(149,213,178,0.15);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-leaf{
+  width:40px;height:40px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.logo-leaf svg{width:100%;height:100%}
+.logo-name{
+  font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;
+  color:var(--white);letter-spacing:0.01em;line-height:1.1;
+}
+.logo-name span{
+  display:block;font-family:'Nunito',sans-serif;font-weight:300;
+  font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--mint);margin-top:1px;
+}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{
+  font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.65);text-decoration:none;transition:color 0.2s;font-weight:600;
+}
+.nav-links a:hover{color:var(--citrus)}
+.nav-actions{display:flex;align-items:center;gap:1rem}
+.nav-tel{font-size:0.78rem;color:rgba(255,255,255,0.4)}
+.btn-nav{
+  padding:0.55rem 1.4rem;
+  background:var(--citrus);color:var(--forest);
+  border:none;border-radius:100px;
+  font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;
+  cursor:pointer;letter-spacing:0.06em;
+  transition:background 0.2s,transform 0.2s;
+}
+.btn-nav:hover{background:var(--tangerine);color:var(--white);transform:translateY(-1px)}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hbg span{width:22px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s}
+
+/* ══ HERO ══ */
+#hero{
+  min-height:100vh;
+  background:var(--forest);
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.hero-blob1{
+  position:absolute;top:-15%;right:-8%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(82,183,136,0.3) 0%,transparent 70%);
+  pointer-events:none;animation:pulse 6s ease-in-out infinite;
+}
+.hero-blob2{
+  position:absolute;bottom:-20%;left:-5%;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(244,162,40,0.15) 0%,transparent 70%);
+  pointer-events:none;animation:pulse 8s ease-in-out infinite 2s;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.hero-pattern{
+  position:absolute;inset:0;opacity:0.04;pointer-events:none;
+  background-image:radial-gradient(circle,#95D5B2 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.hero-body{
+  flex:1;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:10rem 8vw 5rem;
+  position:relative;z-index:2;gap:4rem;
+}
+.hero-left{animation:slideUp 1s ease both}
+@keyframes slideUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(149,213,178,0.12);border:1px solid rgba(149,213,178,0.25);
+  padding:0.45rem 1.1rem;border-radius:100px;
+  font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--mint);margin-bottom:2rem;font-weight:600;
+}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--citrus);animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(3rem,6.5vw,5.5rem);
+  line-height:1.0;font-weight:800;color:var(--white);
+  animation:slideUp 1s ease 0.1s both;
+}
+.hero-h1 .accent{color:var(--citrus)}
+.hero-h1 .leaf-word{
+  color:var(--mint);font-style:normal;position:relative;display:inline-block;
+}
+.hero-h1 .leaf-word::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--leaf),var(--citrus));border-radius:2px;
+}
+.hero-sub{
+  margin-top:1.8rem;font-size:1rem;line-height:1.8;
+  color:rgba(255,255,255,0.55);max-width:430px;font-weight:300;
+  animation:slideUp 1s ease 0.2s both;
+}
+.hero-btns{
+  display:flex;gap:1rem;margin-top:2.8rem;flex-wrap:wrap;
+  animation:slideUp 1s ease 0.3s both;
+}
+.btn-primary{
+  padding:0.95rem 2.2rem;
+  background:linear-gradient(135deg,var(--citrus),var(--tangerine));
+  color:var(--white);border:none;border-radius:100px;
+  font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;
+  cursor:pointer;text-decoration:none;letter-spacing:0.06em;
+  box-shadow:0 8px 30px rgba(232,124,42,0.45);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(232,124,42,0.5)}
+.btn-secondary{
+  padding:0.95rem 2.2rem;
+  background:transparent;color:rgba(255,255,255,0.8);
+  border:1px solid rgba(149,213,178,0.35);border-radius:100px;
+  font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:600;
+  cursor:pointer;text-decoration:none;
+  transition:all 0.2s;
+}
+.btn-secondary:hover{border-color:var(--mint);color:var(--mint);transform:translateY(-2px)}
+.hero-trust{
+  display:flex;gap:2.5rem;margin-top:3.5rem;
+  animation:slideUp 1s ease 0.4s both;
+}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.4);font-weight:600}
+.trust-icon{font-size:1rem}
+
+/* Hero visual */
+.hero-right{
+  display:flex;align-items:center;justify-content:center;
+  animation:fadeInRight 1.2s ease 0.3s both;
+}
+@keyframes fadeInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+.juice-showcase{position:relative;width:360px;height:460px}
+.juice-main{
+  position:absolute;inset:0;
+  background:linear-gradient(150deg,#1F5C3A 0%,#2D7A55 50%,#52B788 100%);
+  border-radius:28px;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,0.4);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:2rem;
+}
+.juice-circles{position:absolute;top:0;left:0;right:0;bottom:0}
+.jc{
+  position:absolute;border-radius:50%;
+  background:rgba(255,255,255,0.04);
+}
+.jc1{width:280px;height:280px;top:-60px;right:-60px}
+.jc2{width:180px;height:180px;top:40px;right:20px;background:rgba(244,162,40,0.08)}
+.jc3{width:120px;height:120px;bottom:80px;left:-30px}
+.juice-bottles{
+  position:absolute;top:20px;left:0;right:0;
+  display:flex;justify-content:center;align-items:flex-end;gap:12px;height:260px;
+}
+.bottle{
+  border-radius:40px 40px 20px 20px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  position:relative;overflow:hidden;
+}
+.bottle::after{
+  content:'';position:absolute;top:10%;left:20%;width:15%;bottom:10%;
+  background:rgba(255,255,255,0.15);border-radius:4px;
+}
+.b1{width:65px;height:180px;background:linear-gradient(180deg,#F4A228,#E87C2A);transform:rotate(-4deg)}
+.b2{width:75px;height:220px;background:linear-gradient(180deg,#52B788,#2D6A4F)}
+.b3{width:65px;height:195px;background:linear-gradient(180deg,#95D5B2,#52B788);transform:rotate(3deg)}
+.b4{width:55px;height:165px;background:linear-gradient(180deg,#F4A228,#D64F12);transform:rotate(-2deg)}
+.juice-tag{
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--mint);margin-bottom:6px;position:relative;z-index:1;
+}
+.juice-title{
+  font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;
+  color:var(--white);position:relative;z-index:1;line-height:1.2;
+}
+.juice-badge-corner{
+  position:absolute;top:1.2rem;right:1.2rem;
+  background:var(--citrus);color:var(--forest);
+  padding:0.35rem 0.9rem;border-radius:100px;
+  font-size:0.62rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;z-index:1;
+}
+/* floating cards */
+.juice-float-a{
+  position:absolute;bottom:-20px;left:-30px;
+  background:var(--white);border-radius:16px;
+  padding:1.2rem 1.6rem;
+  box-shadow:0 16px 40px rgba(26,60,42,0.2);
+  min-width:155px;
+}
+.jfa-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--emerald);line-height:1}
+.jfa-label{font-size:0.72rem;color:var(--muted);margin-top:4px}
+.juice-float-b{
+  position:absolute;top:10px;right:-30px;
+  background:var(--citrus);border-radius:14px;
+  padding:1rem 1.3rem;
+  box-shadow:0 12px 30px rgba(244,162,40,0.4);
+}
+.jfb-top{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(26,60,42,0.7);margin-bottom:4px;font-weight:700}
+.jfb-val{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--forest)}
+
+/* ══ MARQUEE ══ */
+.marquee-wrap{
+  background:var(--citrus);overflow:hidden;padding:1rem 0;
+}
+.marquee-track{
+  display:flex;gap:3.5rem;white-space:nowrap;
+  animation:scroll 20s linear infinite;
+}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--forest);
+}
+.marquee-item svg{width:16px;height:16px;fill:var(--forest);opacity:0.5}
+
+/* ══ PRODUTOS ══ */
+#produtos{padding:7rem 8vw;background:var(--cream)}
+.section-eyebrow{
+  font-size:0.7rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--leaf);font-weight:700;margin-bottom:0.8rem;
+  display:flex;align-items:center;gap:10px;
+}
+.section-eyebrow::before{content:'';display:block;width:22px;height:2px;background:var(--citrus);border-radius:2px}
+.section-h2{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:800;line-height:1.1;color:var(--forest);
+}
+.section-h2 em{font-style:normal;color:var(--emerald)}
+.produtos-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;gap:2rem;flex-wrap:wrap}
+.prod-filter{display:flex;gap:0.6rem;flex-wrap:wrap}
+.pf-btn{
+  padding:0.5rem 1.2rem;border-radius:100px;
+  background:transparent;border:1.5px solid rgba(45,106,79,0.2);
+  font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:600;
+  color:var(--muted);cursor:pointer;transition:all 0.2s;
+}
+.pf-btn.active,.pf-btn:hover{background:var(--forest);border-color:var(--forest);color:var(--white)}
+.produtos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.prod-card{
+  background:var(--white);border-radius:20px;overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;
+  border:1.5px solid rgba(45,106,79,0.07);
+}
+.prod-card:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(26,60,42,0.12)}
+.prod-img{
+  height:200px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.prod-img-bg{position:absolute;inset:0}
+.prod-bottle-wrap{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:center;height:100%}
+.prod-bottle-inner{
+  width:58px;height:155px;border-radius:35px 35px 18px 18px;
+  box-shadow:0 16px 35px rgba(0,0,0,0.2);position:relative;overflow:hidden;
+}
+.prod-bottle-inner::after{
+  content:'';position:absolute;top:10%;left:22%;width:14%;bottom:10%;
+  background:rgba(255,255,255,0.2);border-radius:3px;
+}
+.prod-badge{
+  position:absolute;top:12px;right:12px;z-index:2;
+  background:var(--citrus);color:var(--forest);
+  padding:0.25rem 0.7rem;border-radius:100px;
+  font-size:0.6rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;
+}
+.prod-body{padding:1.5rem}
+.prod-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--forest);margin-bottom:0.4rem}
+.prod-desc{font-size:0.8rem;color:var(--muted);line-height:1.6;font-weight:300}
+.prod-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:1.2rem;padding-top:1rem;
+  border-top:1px solid rgba(45,106,79,0.08);
+}
+.prod-price{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--emerald)}
+.prod-price small{font-size:0.65rem;font-weight:400;color:var(--muted);display:block;margin-top:1px}
+.btn-add{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--forest);color:var(--white);
+  border:none;font-size:1.2rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s,transform 0.2s;
+}
+.btn-add:hover{background:var(--citrus);color:var(--forest);transform:rotate(90deg)}
+
+/* ══ SOBRE ══ */
+#sobre{padding:7rem 8vw;background:var(--forest);overflow:hidden;position:relative}
+#sobre::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(82,183,136,0.05) 1px,transparent 1px);
+  background-size:35px 35px;pointer-events:none;
+}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+.sobre-left{}
+#sobre .section-eyebrow{color:var(--mint)}
+#sobre .section-eyebrow::before{background:var(--citrus)}
+#sobre .section-h2{color:var(--white)}
+#sobre .section-h2 em{color:var(--mint)}
+.sobre-p{margin-top:1.8rem;font-size:0.95rem;line-height:1.85;color:rgba(255,255,255,0.55);font-weight:300;max-width:440px}
+.sobre-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:3rem}
+.sstat{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(149,213,178,0.12);
+  border-radius:16px;padding:1.8rem;
+  transition:background 0.3s;
+}
+.sstat:hover{background:rgba(82,183,136,0.12)}
+.sstat-num{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--citrus);line-height:1}
+.sstat-label{font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:6px;line-height:1.5}
+.sobre-right{position:relative}
+.sobre-img-wrap{position:relative}
+.sobre-main-card{
+  background:linear-gradient(145deg,#2D6A4F,#52B788);
+  border-radius:24px;padding:3rem;
+  box-shadow:0 40px 70px rgba(0,0,0,0.35);
+  overflow:hidden;position:relative;min-height:380px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.sobre-main-card::before{
+  content:'';position:absolute;top:-30%;right:-20%;
+  width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(circle,rgba(244,162,40,0.2) 0%,transparent 70%);
+}
+.sobre-leaf-bg{
+  position:absolute;top:20px;right:20px;font-size:8rem;
+  opacity:0.07;line-height:1;
+}
+.sobre-card-label{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.5rem;position:relative;z-index:1}
+.sobre-card-q{
+  font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;
+  color:var(--white);line-height:1.4;position:relative;z-index:1;
+}
+.sobre-float{
+  position:absolute;bottom:-24px;right:-24px;
+  background:var(--citrus);border-radius:18px;
+  padding:1.5rem 2rem;
+  box-shadow:0 20px 45px rgba(244,162,40,0.4);
+}
+.sf-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--forest);line-height:1}
+.sf-label{font-size:0.72rem;color:rgba(26,60,42,0.7);margin-top:4px;font-weight:600}
+
+/* ══ DIFERENCIAIS ══ */
+#diferenciais{padding:7rem 8vw;background:var(--cream)}
+.diff-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;margin-top:4rem;
+}
+.diff-card{
+  padding:2.8rem 2.2rem;border-radius:20px;
+  background:var(--white);border:1.5px solid rgba(45,106,79,0.07);
+  transition:all 0.3s;cursor:default;position:relative;overflow:hidden;
+}
+.diff-card::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--leaf),var(--citrus));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.3s;
+}
+.diff-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(26,60,42,0.1);border-color:rgba(45,106,79,0.15)}
+.diff-card:hover::before{transform:scaleX(1)}
+.diff-icon{
+  width:56px;height:56px;border-radius:14px;
+  background:linear-gradient(135deg,var(--sage),var(--mint));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin-bottom:1.5rem;
+  transition:transform 0.3s;
+}
+.diff-card:hover .diff-icon{transform:scale(1.1) rotate(-5deg)}
+.diff-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--forest);margin-bottom:0.6rem}
+.diff-desc{font-size:0.85rem;line-height:1.75;color:var(--muted);font-weight:300}
+
+/* ══ DEPOIMENTOS ══ */
+#depoimentos{padding:7rem 8vw;background:var(--sage)}
+.dep-wrap{margin-top:4rem}
+.dep-featured{
+  background:var(--forest);border-radius:24px;
+  padding:3.5rem;display:grid;grid-template-columns:1fr 1.2fr;
+  gap:4rem;align-items:center;margin-bottom:1.5rem;
+  position:relative;overflow:hidden;
+}
+.dep-featured::after{
+  content:'❝';position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  font-size:14rem;color:rgba(82,183,136,0.06);line-height:1;
+  font-family:Georgia,serif;pointer-events:none;
+}
+.dep-feat-left{}
+.dep-stars{color:var(--citrus);font-size:1.1rem;letter-spacing:3px;margin-bottom:1.5rem}
+.dep-quote{
+  font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:600;
+  color:var(--white);line-height:1.5;
+}
+.dep-author{display:flex;align-items:center;gap:14px;margin-top:2rem}
+.dep-av{
+  width:50px;height:50px;border-radius:50%;
+  background:linear-gradient(135deg,var(--citrus),var(--tangerine));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--forest);
+}
+.dep-name{font-weight:700;color:var(--white);font-size:0.9rem}
+.dep-role{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:2px}
+.dep-feat-right{
+  background:rgba(255,255,255,0.05);border-radius:16px;
+  padding:2rem;border:1px solid rgba(149,213,178,0.15);
+}
+.dep-metrics{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.dep-m{text-align:center;padding:1.2rem 0}
+.dep-m-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--citrus)}
+.dep-m-label{font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:4px}
+.dep-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.dep-mini{
+  background:var(--white);border-radius:16px;padding:2rem;
+  transition:transform 0.3s;
+}
+.dep-mini:hover{transform:translateY(-4px)}
+.dep-mini-stars{color:var(--citrus);font-size:0.8rem;margin-bottom:0.8rem}
+.dep-mini-q{font-size:0.85rem;font-style:italic;color:var(--muted);line-height:1.65;font-weight:300}
+.dep-mini-author{font-size:0.75rem;font-weight:700;color:var(--forest);margin-top:1rem}
+
+/* ══ ASSINATURA ══ */
+#assinatura{padding:7rem 8vw;background:var(--cream)}
+.assin-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:4rem}
+.assin-plans{display:flex;flex-direction:column;gap:1.2rem}
+.plan-card{
+  border-radius:18px;padding:2rem 2.2rem;
+  border:2px solid rgba(45,106,79,0.12);
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;transition:all 0.3s;gap:1rem;
+  background:var(--white);
+}
+.plan-card:hover,.plan-card.featured{
+  border-color:var(--emerald);
+  background:var(--forest);
+}
+.plan-card:hover .plan-name,.plan-card.featured .plan-name{color:var(--white)}
+.plan-card:hover .plan-desc,.plan-card.featured .plan-desc{color:rgba(255,255,255,0.5)}
+.plan-card:hover .plan-price,.plan-card.featured .plan-price{color:var(--citrus)}
+.plan-card:hover .plan-price small,.plan-card.featured .plan-price small{color:rgba(255,255,255,0.4)}
+.plan-info{}
+.plan-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--forest);margin-bottom:4px}
+.plan-desc{font-size:0.8rem;color:var(--muted);font-weight:300}
+.plan-price{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--emerald);white-space:nowrap;text-align:right}
+.plan-price small{display:block;font-size:0.65rem;font-weight:400;color:var(--muted)}
+.plan-badge-featured{
+  background:var(--citrus);color:var(--forest);
+  padding:0.2rem 0.7rem;border-radius:100px;
+  font-size:0.6rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;
+  align-self:flex-start;flex-shrink:0;
+}
+.assin-right{}
+.assin-box{
+  background:var(--forest);border-radius:24px;
+  padding:3rem;position:relative;overflow:hidden;
+}
+.assin-box::before{
+  content:'';position:absolute;top:-30%;right:-20%;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(244,162,40,0.18) 0%,transparent 70%);
+}
+.assin-box-title{
+  font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;
+  color:var(--white);position:relative;z-index:1;line-height:1.2;
+}
+.assin-box-sub{font-size:0.88rem;color:rgba(255,255,255,0.5);margin-top:1rem;position:relative;z-index:1;font-weight:300}
+.assin-perks{display:flex;flex-direction:column;gap:0.85rem;margin-top:2rem;position:relative;z-index:1}
+.perk{display:flex;align-items:center;gap:10px;font-size:0.85rem;color:rgba(255,255,255,0.7)}
+.perk::before{content:'✓';color:var(--citrus);font-weight:800;font-size:0.9rem}
+.btn-assin{
+  display:block;width:100%;margin-top:2.5rem;
+  padding:1.1rem;text-align:center;
+  background:linear-gradient(135deg,var(--citrus),var(--tangerine));
+  color:var(--white);border:none;border-radius:12px;
+  font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;
+  cursor:pointer;letter-spacing:0.08em;
+  box-shadow:0 10px 30px rgba(232,124,42,0.4);
+  transition:transform 0.2s,box-shadow 0.2s;position:relative;z-index:1;
+}
+.btn-assin:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(232,124,42,0.5)}
+
+/* ══ CTA BAND ══ */
+#cta{
+  padding:8rem 8vw;
+  background:linear-gradient(135deg,var(--citrus) 0%,var(--tangerine) 50%,var(--flame) 100%);
+  text-align:center;position:relative;overflow:hidden;
+}
+#cta::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,0.06) 1px,transparent 1px);
+  background-size:30px 30px;
+}
+.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.cta-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:rgba(26,60,42,0.7);margin-bottom:1.5rem;font-weight:700;
+}
+.cta-h{
+  font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,4rem);
+  font-weight:800;color:var(--forest);line-height:1.0;
+}
+.cta-h em{font-style:italic;color:var(--white)}
+.cta-sub{font-size:1rem;color:rgba(26,60,42,0.65);margin-top:1rem;font-weight:300}
+.cta-btns{display:flex;gap:1rem;justify-content:center;margin-top:2.5rem;flex-wrap:wrap}
+.btn-cta-a{
+  padding:1.1rem 2.6rem;
+  background:var(--forest);color:var(--white);
+  border:none;border-radius:100px;
+  font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;
+  cursor:pointer;
+  box-shadow:0 10px 35px rgba(26,60,42,0.35);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-cta-a:hover{transform:translateY(-3px);box-shadow:0 16px 45px rgba(26,60,42,0.45)}
+.btn-cta-b{
+  padding:1.1rem 2.6rem;
+  background:rgba(255,255,255,0.25);color:var(--forest);
+  border:2px solid rgba(26,60,42,0.25);border-radius:100px;
+  font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;
+  cursor:pointer;
+  transition:all 0.2s;backdrop-filter:blur(8px);
+}
+.btn-cta-b:hover{background:rgba(255,255,255,0.4);transform:translateY(-2px)}
+
+/* ══ FOOTER ══ */
+footer{background:var(--forest);padding:6rem 8vw 0}
+.ft-top{
+  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
+  gap:3.5rem;padding-bottom:4rem;
+  border-bottom:1px solid rgba(149,213,178,0.1);
+}
+.ft-brand-logo{display:flex;align-items:center;gap:12px;margin-bottom:1.4rem;text-decoration:none}
+.ft-tagline{font-size:0.88rem;line-height:1.8;color:rgba(255,255,255,0.35);max-width:250px;font-weight:300}
+.ft-social{display:flex;gap:8px;margin-top:1.8rem}
+.ft-soc{
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(149,213,178,0.08);border:1px solid rgba(149,213,178,0.12);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.4);font-size:0.75rem;
+  text-decoration:none;transition:all 0.2s;cursor:pointer;
+}
+.ft-soc:hover{background:var(--citrus);border-color:var(--citrus);color:var(--forest)}
+.ft-col h5{
+  font-family:'Syne',sans-serif;
+  font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--mint);margin-bottom:1.5rem;font-weight:700;
+}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:0.8rem}
+.ft-col ul a{
+  font-size:0.85rem;color:rgba(255,255,255,0.35);text-decoration:none;
+  transition:color 0.2s;font-weight:300;
+}
+.ft-col ul a:hover{color:rgba(255,255,255,0.85)}
+.ft-cert-band{
+  padding:1.8rem 0;
+  border-bottom:1px solid rgba(149,213,178,0.08);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1.5rem;
+}
+.ft-cert-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:0.78rem;color:rgba(255,255,255,0.3);
+}
+.ft-cert-icon{font-size:1.1rem}
+.ft-bottom{
+  padding:1.8rem 0;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.ft-copy{font-size:0.78rem;color:rgba(255,255,255,0.22)}
+.ft-links-row{display:flex;gap:1.5rem}
+.ft-links-row a{font-size:0.72rem;color:rgba(255,255,255,0.22);text-decoration:none;transition:color 0.2s}
+.ft-links-row a:hover{color:rgba(255,255,255,0.6)}
+.ft-dev-credit{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.72rem;color:rgba(255,255,255,0.2);
+}
+.gs-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:0.3rem 0.9rem;
+  background:rgba(244,162,40,0.12);
+  border:1px solid rgba(244,162,40,0.2);
+  border-radius:100px;
+  color:rgba(244,162,40,0.6);font-size:0.68rem;
+  font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.1em;
+  text-decoration:none;transition:all 0.25s;
+}
+.gs-badge:hover{background:rgba(244,162,40,0.22);color:var(--citrus);border-color:rgba(244,162,40,0.4)}
+.gs-badge::before{content:'⚡'}
+
+/* ══ REVEAL ══ */
+.r{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.r.on{opacity:1;transform:translateY(0)}
+.r1{transition-delay:0.1s}.r2{transition-delay:0.2s}.r3{transition-delay:0.3s}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1024px){
+  .hero-body{grid-template-columns:1fr;gap:3rem}
+  .hero-right{display:none}
+  .produtos-grid{grid-template-columns:repeat(2,1fr)}
+  .sobre-grid{grid-template-columns:1fr}
+  .sobre-right{display:none}
+  .diff-grid{grid-template-columns:1fr 1fr}
+  .dep-featured{grid-template-columns:1fr}
+  .dep-feat-right{display:none}
+  .assin-grid{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  nav .nav-links,.nav-tel{display:none}
+  .hbg{display:flex}
+  .produtos-grid{grid-template-columns:1fr 1fr}
+  .diff-grid{grid-template-columns:1fr}
+  .dep-mini-grid{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr}
+  .ft-bottom{flex-direction:column;align-items:flex-start}
+  .sobre-stats{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .produtos-grid{grid-template-columns:1fr}
+  .hero-body{padding:9rem 6vw 4rem}
+  #produtos,#sobre,#diferenciais,#depoimentos,#assinatura,#cta{padding-left:6vw;padding-right:6vw}
+  footer{padding-left:6vw;padding-right:6vw}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="logo-leaf">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M20 4C20 4 6 12 6 24C6 31.7 12.3 38 20 38C27.7 38 34 31.7 34 24C34 12 20 4 20 4Z" fill="#52B788"/>
+        <path d="M20 4C20 4 20 18 14 28" stroke="#2D6A4F" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="26" cy="16" r="4" fill="#F4A228" opacity="0.8"/>
+      </svg>
+    </div>
+    <div class="logo-name">Natura Sucos<span>100% Orgânicos</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#sobre">Nossa História</a></li>
+    <li><a href="#diferenciais">Por Que Nós</a></li>
+    <li><a href="#assinatura">Assinatura</a></li>
+    <li><a href="#cta">Contato</a></li>
+  </ul>
+  <div class="nav-actions">
+    <span class="nav-tel">(11) 9 8888-0000</span>
+    <button class="btn-nav">Pedir Agora</button>
+  </div>
+  <div class="hbg"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-body">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        Certificado Orgânico IBD · Colheita 2025
+      </div>
+      <h1 class="hero-h1">
+        Puro.<br>
+        Natural.<br>
+        <span class="leaf-word">Vivo.</span>
+      </h1>
+      <p class="hero-sub">Sucos prensados a frio, 100% orgânicos, sem conservantes e sem adição de açúcar. Direto do campo para sua mesa — em até 48 horas.</p>
+      <div class="hero-btns">
+        <a href="#produtos" class="btn-primary">Ver Cardápio Completo</a>
+        <a href="#assinatura" class="btn-secondary">Planos de Assinatura →</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-icon">🌿</span> Sem Agrotóxico</div>
+        <div class="trust-item"><span class="trust-icon">🧊</span> Prensagem a Frio</div>
+        <div class="trust-item"><span class="trust-icon">🚚</span> Entrega em SP</div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="juice-showcase">
+        <div class="juice-main">
+          <div class="juice-circles">
+            <div class="jc jc1"></div>
+            <div class="jc jc2"></div>
+            <div class="jc jc3"></div>
+          </div>
+          <div class="juice-bottles">
+            <div class="bottle b1"></div>
+            <div class="bottle b2"></div>
+            <div class="bottle b3"></div>
+            <div class="bottle b4"></div>
+          </div>
+          <div class="juice-badge-corner">Orgânico</div>
+          <div class="juice-tag">Linha Premium · 2025</div>
+          <div class="juice-title">Blends<br>Exclusivos</div>
+        </div>
+        <div class="juice-float-a">
+          <div class="jfa-num">100%</div>
+          <div class="jfa-label">Sem conservantes<br>ou aditivos</div>
+        </div>
+        <div class="juice-float-b">
+          <div class="jfb-top">Entrega</div>
+          <div class="jfb-val">48h 🌿</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">🍋 Limão Siciliano</span>
+    <span class="marquee-item">🥦 Detox Verde</span>
+    <span class="marquee-item">🍊 Laranja & Cúrcuma</span>
+    <span class="marquee-item">🍍 Abacaxi & Hortelã</span>
+    <span class="marquee-item">🫐 Mirtilo & Gengibre</span>
+    <span class="marquee-item">🥕 Cenoura & Maçã</span>
+    <span class="marquee-item">🍉 Melancia & Limão</span>
+    <span class="marquee-item">🍋 Limão Siciliano</span>
+    <span class="marquee-item">🥦 Detox Verde</span>
+    <span class="marquee-item">🍊 Laranja & Cúrcuma</span>
+    <span class="marquee-item">🍍 Abacaxi & Hortelã</span>
+    <span class="marquee-item">🫐 Mirtilo & Gengibre</span>
+    <span class="marquee-item">🥕 Cenoura & Maçã</span>
+    <span class="marquee-item">🍉 Melancia & Limão</span>
+  </div>
+</div>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="produtos-header r">
+    <div>
+      <div class="section-eyebrow">Nossos Produtos</div>
+      <h2 class="section-h2">Feitos para quem<br><em>se cuida de verdade</em></h2>
+    </div>
+    <div class="prod-filter">
+      <button class="pf-btn active">Todos</button>
+      <button class="pf-btn">Detox</button>
+      <button class="pf-btn">Imunidade</button>
+      <button class="pf-btn">Energia</button>
+      <button class="pf-btn">Blends</button>
+    </div>
+  </div>
+  <div class="produtos-grid">
+
+    <div class="prod-card r r1">
+      <div class="prod-img">
+        <div class="prod-img-bg" style="background:linear-gradient(160deg,#D8F3DC,#95D5B2)"></div>
+        <div class="prod-bottle-wrap">
+          <div class="prod-bottle-inner" style="background:linear-gradient(180deg,#52B788,#2D6A4F)"></div>
+        </div>
+        <span class="prod-badge">Bestseller</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Verde Vital</div>
+        <div class="prod-desc">Couve, pepino, limão, gengibre e maçã verde. Detox poderoso e refrescante.</div>
+        <div class="prod-footer">
+          <div class="prod-price">R$ 18,90<small>300ml · prensado a frio</small></div>
+          <button class="btn-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card r r2">
+      <div class="prod-img">
+        <div class="prod-img-bg" style="background:linear-gradient(160deg,#FFF3E0,#FFE0B2)"></div>
+        <div class="prod-bottle-wrap">
+          <div class="prod-bottle-inner" style="background:linear-gradient(180deg,#F4A228,#E87C2A)"></div>
+        </div>
+        <span class="prod-badge">Novo</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Sol & Cúrcuma</div>
+        <div class="prod-desc">Laranja, cúrcuma, pimenta-preta e mel orgânico. Anti-inflamatório natural.</div>
+        <div class="prod-footer">
+          <div class="prod-price">R$ 19,90<small>300ml · prensado a frio</small></div>
+          <button class="btn-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card r r1">
+      <div class="prod-img">
+        <div class="prod-img-bg" style="background:linear-gradient(160deg,#E8F5E9,#C8E6C9)"></div>
+        <div class="prod-bottle-wrap">
+          <div class="prod-bottle-inner" style="background:linear-gradient(180deg,#95D5B2,#52B788)"></div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Hortelã Fresh</div>
+        <div class="prod-desc">Abacaxi, hortelã, limão e água de coco. Hidratação e leveza em cada gole.</div>
+        <div class="prod-footer">
+          <div class="prod-price">R$ 17,90<small>300ml · prensado a frio</small></div>
+          <button class="btn-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card r r2">
+      <div class="prod-img">
+        <div class="prod-img-bg" style="background:linear-gradient(160deg,#FCE4EC,#F8BBD0)"></div>
+        <div class="prod-bottle-wrap">
+          <div class="prod-bottle-inner" style="background:linear-gradient(180deg,#E87C2A,#D64F12)"></div>
+        </div>
+        <span class="prod-badge">Premium</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Power Boost</div>
+        <div class="prod-desc">Beterraba, maçã, cenoura e espirulina. Energia e performance para o dia.</div>
+        <div class="prod-footer">
+          <div class="prod-price">R$ 22,90<small>300ml · prensado a frio</small></div>
+          <button class="btn-add">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-grid">
+    <div class="sobre-left r">
+      <div class="section-eyebrow">Nossa História</div>
+      <h2 class="section-h2">Da fazenda<br><em>à sua porta</em></h2>
+      <p class="sobre-p">Nascemos em 2018 com uma missão simples: tornar o consumo de alimentos orgânicos acessível, conveniente e saboroso. Hoje, trabalhamos com mais de 30 produtores certificados do interior de São Paulo, garantindo a rastreabilidade de cada ingrediente.</p>
+      <div class="sobre-stats">
+        <div class="sstat">
+          <div class="sstat-num">30+</div>
+          <div class="sstat-label">Produtores orgânicos<br>certificados IBD</div>
+        </div>
+        <div class="sstat">
+          <div class="sstat-num">48h</div>
+          <div class="sstat-label">Da colheita à<br>sua entrega</div>
+        </div>
+        <div class="sstat">
+          <div class="sstat-num">8k+</div>
+          <div class="sstat-label">Clientes ativos em<br>São Paulo e ABCD</div>
+        </div>
+        <div class="sstat">
+          <div class="sstat-num">0%</div>
+          <div class="sstat-label">Conservantes,<br>corantes ou aditivos</div>
+        </div>
+      </div>
+    </div>
+    <div class="sobre-right r r2">
+      <div class="sobre-img-wrap">
+        <div class="sobre-main-card">
+          <div class="sobre-leaf-bg">🌿</div>
+          <div class="sobre-card-label">Nossa filosofia</div>
+          <div class="sobre-card-q">"Cada gole deve ser uma experiência de reconexão com a natureza."</div>
+        </div>
+        <div class="sobre-float">
+          <div class="sf-num">★ 4.9</div>
+          <div class="sf-label">Google Reviews<br>+1.200 avaliações</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="r" style="text-align:center;max-width:560px;margin:0 auto">
+    <div class="section-eyebrow" style="justify-content:center">Por que nos escolher</div>
+    <h2 class="section-h2">Qualidade que você<br><em>vê, sente e prova</em></h2>
+  </div>
+  <div class="diff-grid">
+    <div class="diff-card r r1">
+      <div class="diff-icon">🌿</div>
+      <div class="diff-title">100% Orgânico Certificado</div>
+      <p class="diff-desc">Todos os nossos ingredientes são certificados pelo IBD — o maior certificador de orgânicos da América Latina. Rastreável do campo à garrafa.</p>
+    </div>
+    <div class="diff-card r r2">
+      <div class="diff-icon">🧊</div>
+      <div class="diff-title">Prensagem a Frio (HPP)</div>
+      <p class="diff-desc">Nossa tecnologia de alta pressão preserva vitaminas, enzimas e nutrientes sem uso de calor. Sabor e saúde máximos em cada garrafa.</p>
+    </div>
+    <div class="diff-card r r3">
+      <div class="diff-icon">🚚</div>
+      <div class="diff-title">Entrega Refrigerada em 48h</div>
+      <p class="diff-desc">Produzimos, embalamos e entregamos em até 48 horas. Frota refrigerada, embalagem sustentável e rastreamento em tempo real.</p>
+    </div>
+    <div class="diff-card r r1">
+      <div class="diff-icon">♻️</div>
+      <div class="diff-title">Embalagem Sustentável</div>
+      <p class="diff-desc">Garrafas de vidro retornável ou embalagens 100% recicláveis. Programa de devolução com desconto progressivo para clientes fiéis.</p>
+    </div>
+    <div class="diff-card r r2">
+      <div class="diff-icon">🧬</div>
+      <div class="diff-title">Sem Adição de Açúcar</div>
+      <p class="diff-desc">Apenas o açúcar natural das frutas e vegetais. Sem xaropes, sem adoçantes artificiais, sem nada que não venha diretamente da natureza.</p>
+    </div>
+    <div class="diff-card r r3">
+      <div class="diff-icon">📱</div>
+      <div class="diff-title">App & Assinatura Flexível</div>
+      <p class="diff-desc">Gerencie seus pedidos pelo app, pause, cancele ou customize seu kit a qualquer momento, sem fidelidade e sem burocracia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="r" style="text-align:center;max-width:520px;margin:0 auto">
+    <div class="section-eyebrow" style="justify-content:center">Depoimentos</div>
+    <h2 class="section-h2">Quem prova,<br><em>não para mais</em></h2>
+  </div>
+  <div class="dep-wrap r">
+    <div class="dep-featured">
+      <div class="dep-feat-left">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-quote">"Assino há dois anos e simplesmente não consigo imaginar minha manhã sem o Verde Vital. Minha disposição mudou completamente. É o melhor investimento que faço na minha saúde."</p>
+        <div class="dep-author">
+          <div class="dep-av">PC</div>
+          <div>
+            <div class="dep-name">Paula Cerqueira</div>
+            <div class="dep-role">Plano Semanal · Assinante há 2 anos</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-feat-right">
+        <div class="dep-metrics">
+          <div class="dep-m"><div class="dep-m-num">8k+</div><div class="dep-m-label">Clientes ativos</div></div>
+          <div class="dep-m"><div class="dep-m-num">4.9★</div><div class="dep-m-label">Avaliação média</div></div>
+          <div class="dep-m"><div class="dep-m-num">96%</div><div class="dep-m-label">Renovam plano</div></div>
+          <div class="dep-m"><div class="dep-m-num">1.2k</div><div class="dep-m-label">Reviews Google</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="dep-mini-grid r">
+      <div class="dep-mini">
+        <div class="dep-mini-stars">★★★★★</div>
+        <p class="dep-mini-q">"Qualidade absurda. Você sente a diferença de um produto feito com cuidado de verdade. Nunca mais compro suco industrializado."</p>
+        <div class="dep-mini-author">— Rafael Nunes · Plano Diário</div>
+      </div>
+      <div class="dep-mini">
+        <div class="dep-mini-stars">★★★★★</div>
+        <p class="dep-mini-q">"Recebo toda semana e o sabor é sempre impecável. A entrega é pontual, o atendimento excelente. Recomendo demais!"</p>
+        <div class="dep-mini-author">— Camila Torres · Plano Semanal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSINATURA -->
+<section id="assinatura">
+  <div class="r">
+    <div class="section-eyebrow">Assinaturas</div>
+    <h2 class="section-h2">Escolha seu<br><em>plano natural</em></h2>
+  </div>
+  <div class="assin-grid r">
+    <div class="assin-plans">
+      <div class="plan-card">
+        <div class="plan-info">
+          <div class="plan-name">Kit Essencial · 3x/semana</div>
+          <div class="plan-desc">3 garrafinhas por semana, sabores à sua escolha</div>
+        </div>
+        <div class="plan-price">R$ 159<small>/mês</small></div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-info">
+          <div class="plan-name">Kit Vitalidade · Diário</div>
+          <div class="plan-desc">1 garrafa por dia, segunda a sexta, curadoria mensal</div>
+        </div>
+        <div class="plan-price">R$ 299<small>/mês</small></div>
+        <span class="plan-badge-featured">Popular</span>
+      </div>
+      <div class="plan-card">
+        <div class="plan-info">
+          <div class="plan-name">Kit Família · 10x/semana</div>
+          <div class="plan-desc">10 garrafinhas semanais para toda a família</div>
+        </div>
+        <div class="plan-price">R$ 479<small>/mês</small></div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-info">
+          <div class="plan-name">Kit Personalizado</div>
+          <div class="plan-desc">Monte sua caixa com os sabores que você prefere</div>
+        </div>
+        <div class="plan-price">Sob<small>consulta</small></div>
+      </div>
+    </div>
+    <div class="assin-right">
+      <div class="assin-box">
+        <div class="assin-box-title">Todos os planos incluem:</div>
+        <div class="assin-box-sub">Sem fidelidade. Pause ou cancele quando quiser.</div>
+        <div class="assin-perks">
+          <div class="perk">Frete grátis em São Paulo e ABCD</div>
+          <div class="perk">Entrega refrigerada, pontual e rastreável</div>
+          <div class="perk">Troca de sabores a qualquer momento</div>
+          <div class="perk">Garrafas de vidro retornável sem custo</div>
+          <div class="perk">Acesso ao app exclusivo Natura+</div>
+          <div class="perk">Suporte via WhatsApp 7 dias por semana</div>
+          <div class="perk">Desconto de 10% em pedidos avulsos</div>
+        </div>
+        <button class="btn-assin">Assinar Agora — Cancele Quando Quiser</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner r">
+    <div class="cta-tag">🍊 Primeira entrega com 20% off</div>
+    <h2 class="cta-h">Comece hoje sua<br><em>jornada natural.</em></h2>
+    <p class="cta-sub">Use o cupom NATURA20 no primeiro pedido e experimente sem risco.</p>
+    <div class="cta-btns">
+      <button class="btn-cta-a">Quero meu Primeiro Kit</button>
+      <button class="btn-cta-b">Ver Cardápio Completo</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <a href="#" class="ft-brand-logo">
+        <div class="logo-leaf">
+          <svg viewBox="0 0 40 40" fill="none">
+            <path d="M20 4C20 4 6 12 6 24C6 31.7 12.3 38 20 38C27.7 38 34 31.7 34 24C34 12 20 4 20 4Z" fill="#52B788"/>
+            <path d="M20 4C20 4 20 18 14 28" stroke="#2D6A4F" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="16" r="4" fill="#F4A228" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="logo-name">Natura Sucos<span>100% Orgânicos</span></div>
+      </a>
+      <p class="ft-tagline">Sucos prensados a frio, 100% orgânicos e sem conservantes. Do campo à sua porta em 48 horas.</p>
+      <div class="ft-social">
+        <a class="ft-soc" href="#" title="Instagram">ig</a>
+        <a class="ft-soc" href="#" title="TikTok">tk</a>
+        <a class="ft-soc" href="#" title="WhatsApp">wa</a>
+        <a class="ft-soc" href="#" title="YouTube">yt</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h5>Produtos</h5>
+      <ul>
+        <li><a href="#">Linha Detox</a></li>
+        <li><a href="#">Linha Imunidade</a></li>
+        <li><a href="#">Linha Energia</a></li>
+        <li><a href="#">Blends Premium</a></li>
+        <li><a href="#">Kits Presentes</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="#">Nossa História</a></li>
+        <li><a href="#">Produtores Parceiros</a></li>
+        <li><a href="#">Certificações</a></li>
+        <li><a href="#">Blog & Receitas</a></li>
+        <li><a href="#">Trabalhe Conosco</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Suporte</h5>
+      <ul>
+        <li><a href="#">(11) 9 8888-0000</a></li>
+        <li><a href="#">oi@naturasucos.com.br</a></li>
+        <li><a href="#">Minha Assinatura</a></li>
+        <li><a href="#">Política de Entrega</a></li>
+        <li><a href="#">Seg–Dom: 8h às 20h</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-cert-band">
+    <div class="ft-cert-item"><span class="ft-cert-icon">🌿</span> Certificado Orgânico IBD</div>
+    <div class="ft-cert-item"><span class="ft-cert-icon">♻️</span> Embalagem 100% Reciclável</div>
+    <div class="ft-cert-item"><span class="ft-cert-icon">🧊</span> Tecnologia HPP Prensagem a Frio</div>
+    <div class="ft-cert-item"><span class="ft-cert-icon">🚚</span> Entrega Refrigerada em SP</div>
+  </div>
+  <div class="ft-bottom">
+    <p class="ft-copy">© 2025 Natura Sucos Orgânicos. Todos os direitos reservados. CNPJ 00.000.000/0001-00</p>
+    <div class="ft-links-row">
+      <a href="#">Privacidade</a>
+      <a href="#">Termos</a>
+      <a href="#">Cookies</a>
+    </div>
+    <div class="ft-dev-credit">
+      Desenvolvido por
+      <a class="gs-badge" href="#" title="GS Web Productions">GS Web Productions</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+  nav.classList.add('scrolled');
+
+  // Reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+  // Filter buttons
+  document.querySelectorAll('.pf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Add to cart feedback
+  document.querySelectorAll('.btn-add').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.textContent = '✓';
+      this.style.background = 'var(--leaf)';
+      setTimeout(() => {
+        this.textContent = '+';
+        this.style.background = 'var(--forest)';
+      }, 1200);
+    });
+  });
+
+  // Plan cards
+  document.querySelectorAll('.plan-card').forEach(card => {
+    card.addEventListener('click', function() {
+      document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('featured'));
+      this.classList.add('featured');
+    });
+  });
+</script>
+</body>
+</html>

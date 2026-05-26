@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Incorporações — Imóveis de Alto Padrão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vermelho: #C0392B;
+    --vermelho-vivo: #E74C3C;
+    --vermelho-escuro: #922B21;
+    --laranja: #E67E22;
+    --dourado: #D4AC0D;
+    --dourado-claro: #F9E79F;
+    --cinza-escuro: #0D0D0D;
+    --cinza-900: #111111;
+    --cinza-800: #1A1A1A;
+    --cinza-700: #242424;
+    --cinza-600: #333333;
+    --cinza-400: #888888;
+    --cinza-200: #CCCCCC;
+    --branco: #FFFFFF;
+    --verde-ok: #27AE60;
+    --azul-stat: #7B8CE8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cinza-900);
+    color: var(--branco);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    background: rgba(13,13,13,0.90);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.3s;
+  }
+
+  nav.scrolled { border-color: rgba(192,57,43,0.3); }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 38px; height: 38px;
+    background: var(--vermelho);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: white;
+    letter-spacing: -1px;
+  }
+
+  .logo-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+    letter-spacing: -0.02em;
+  }
+
+  .logo-name span {
+    color: var(--vermelho-vivo);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--cinza-400);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: white; }
+
+  .nav-cta {
+    background: var(--vermelho) !important;
+    color: white !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    transition: background 0.3s !important;
+  }
+
+  .nav-cta:hover { background: var(--vermelho-vivo) !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  .hamburger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 5% 60px;
+    gap: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%; height: 100%;
+    background: radial-gradient(ellipse at top right, rgba(192,57,43,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 40%; height: 40%;
+    background: radial-gradient(ellipse at bottom left, rgba(192,57,43,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--vermelho-vivo);
+    margin-bottom: 24px;
+    border: 1px solid rgba(231,76,60,0.3);
+    padding: 7px 16px;
+    border-radius: 4px;
+    background: rgba(231,76,60,0.06);
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--vermelho-vivo);
+    border-radius: 50%;
+    animation: blink 1.8s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.6rem, 4.2vw, 4rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    color: white;
+    margin-bottom: 24px;
+  }
+
+  .hero-title .accent { color: var(--vermelho-vivo); }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--cinza-400);
+    max-width: 500px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 52px;
+  }
+
+  .btn-red {
+    background: var(--vermelho);
+    color: white;
+    padding: 15px 32px;
+    border-radius: 6px;
+    font-size: 0.94rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(192,57,43,0.35);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-red:hover {
+    background: var(--vermelho-vivo);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(231,76,60,0.45);
+  }
+
+  .btn-ghost {
+    color: var(--cinza-200);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 24px;
+    border-radius: 6px;
+    transition: all 0.3s;
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(255,255,255,0.3);
+    color: white;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .hero-trust {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .trust-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+  }
+
+  .trust-num .unit { color: var(--vermelho-vivo); }
+
+  .trust-label {
+    font-size: 0.75rem;
+    color: var(--cinza-400);
+    margin-top: 4px;
+  }
+
+  .trust-sep { width: 1px; height: 40px; background: rgba(255,255,255,0.1); }
+
+  /* ===== DASHBOARD HERO ===== */
+  .hero-dashboard {
+    position: relative;
+    z-index: 2;
+  }
+
+  .dash-card {
+    background: var(--cinza-800);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(192,57,43,0.1);
+    animation: floatDash 7s ease-in-out infinite;
+  }
+
+  @keyframes floatDash {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(0.3deg); }
+  }
+
+  .dash-topbar {
+    background: var(--cinza-700);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .dash-dots { display: flex; gap: 6px; }
+  .dash-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .dash-dot:nth-child(1) { background: #FF5F57; }
+  .dash-dot:nth-child(2) { background: #FFBD2E; }
+  .dash-dot:nth-child(3) { background: #28CA41; }
+
+  .dash-title-bar {
+    font-size: 0.75rem;
+    color: var(--cinza-400);
+    font-weight: 500;
+  }
+
+  .dash-period {
+    font-size: 0.72rem;
+    background: rgba(255,255,255,0.06);
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: var(--cinza-400);
+  }
+
+  .dash-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .dash-metric {
+    background: var(--cinza-700);
+    padding: 18px 16px;
+    text-align: center;
+  }
+
+  .dash-metric-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .dash-metric-val.leads { color: white; }
+  .dash-metric-val.cpl { color: var(--verde-ok); }
+  .dash-metric-val.roas { color: var(--azul-stat); }
+
+  .dash-metric-label {
+    font-size: 0.68rem;
+    color: var(--cinza-400);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .dash-metric-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 5px;
+    display: inline-block;
+  }
+
+  .tag-green { background: rgba(39,174,96,0.15); color: var(--verde-ok); }
+  .tag-red { background: rgba(231,76,60,0.15); color: var(--vermelho-vivo); }
+  .tag-blue { background: rgba(123,140,232,0.15); color: var(--azul-stat); }
+
+  /* Bar chart */
+  .dash-chart {
+    margin: 0 20px 20px;
+    background: var(--cinza-700);
+    border-radius: 10px;
+    padding: 20px 16px 16px;
+  }
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .chart-title { font-size: 0.75rem; font-weight: 600; color: var(--cinza-200); }
+
+  .chart-legend {
+    display: flex;
+    gap: 12px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.65rem;
+    color: var(--cinza-400);
+  }
+
+  .legend-dot { width: 7px; height: 7px; border-radius: 2px; }
+
+  .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 100px;
+  }
+
+  .bar-group {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    flex: 1;
+  }
+
+  .bar {
+    flex: 1;
+    border-radius: 4px 4px 0 0;
+    transition: opacity 0.3s;
+  }
+
+  .bar:hover { opacity: 0.8; }
+  .bar.red { background: var(--vermelho); }
+  .bar.blue { background: var(--azul-stat); }
+
+  .bar-label {
+    text-align: center;
+    font-size: 0.6rem;
+    color: var(--cinza-400);
+    margin-top: 6px;
+  }
+
+  .dash-footer-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0 20px 20px;
+  }
+
+  .dash-mini-card {
+    background: var(--cinza-700);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mini-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .mini-icon.r { background: rgba(192,57,43,0.2); }
+  .mini-icon.g { background: rgba(39,174,96,0.2); }
+
+  .mini-info strong { display: block; font-size: 1rem; font-family: 'Syne', sans-serif; font-weight: 700; }
+  .mini-info span { font-size: 0.68rem; color: var(--cinza-400); }
+
+  /* Float badges */
+  .dash-float-1 {
+    position: absolute;
+    top: -18px;
+    right: -24px;
+    background: var(--verde-ok);
+    color: white;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 8px 24px rgba(39,174,96,0.4);
+    animation: floatDash 7s ease-in-out infinite;
+    animation-delay: -2s;
+  }
+
+  .dash-float-2 {
+    position: absolute;
+    bottom: -16px;
+    left: -20px;
+    background: var(--cinza-800);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 0.78rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    animation: floatDash 7s ease-in-out infinite;
+    animation-delay: -4s;
+  }
+
+  .float2-icon { font-size: 1.3rem; }
+  .float2-info strong { display: block; font-size: 0.88rem; color: white; }
+  .float2-info span { font-size: 0.7rem; color: var(--cinza-400); }
+
+  /* ===== SECTION BASE ===== */
+  section { padding: 90px 5%; }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--vermelho-vivo);
+    margin-bottom: 16px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 20px; height: 2px;
+    background: var(--vermelho-vivo);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.9rem, 3vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 0.97rem;
+    line-height: 1.75;
+    color: var(--cinza-400);
+    max-width: 520px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  /* ===== EMPREENDIMENTOS ===== */
+  .empreendimentos { background: var(--cinza-800); }
+
+  .emp-header { text-align: center; }
+  .emp-header .section-tag { justify-content: center; }
+  .emp-header .section-tag::before { display: none; }
+  .emp-header .section-desc { margin: 0 auto 52px; }
+
+  .emp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .emp-card {
+    background: var(--cinza-700);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.35s;
+    cursor: pointer;
+  }
+
+  .emp-card:hover {
+    border-color: rgba(192,57,43,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(192,57,43,0.12);
+  }
+
+  .emp-thumb {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .emp-thumb-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    transition: transform 0.4s;
+  }
+
+  .emp-card:hover .emp-thumb-bg { transform: scale(1.06); }
+
+  .emp-thumb-bg.azul { background: linear-gradient(135deg, #1a2a4a, #2d4a7a); }
+  .emp-thumb-bg.verde { background: linear-gradient(135deg, #1a3a2a, #2d6a4a); }
+  .emp-thumb-bg.ouro { background: linear-gradient(135deg, #3a2a0a, #6a4a1a); }
+
+  .emp-status {
+    position: absolute;
+    top: 14px; left: 14px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .status-lancamento { background: var(--vermelho); color: white; }
+  .status-obras { background: var(--dourado); color: #111; }
+  .status-entregue { background: var(--verde-ok); color: white; }
+
+  .emp-price {
+    position: absolute;
+    bottom: 14px; right: 14px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 5px 12px;
+    border-radius: 4px;
+  }
+
+  .emp-info { padding: 22px; }
+
+  .emp-info h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 6px;
+  }
+
+  .emp-local {
+    font-size: 0.78rem;
+    color: var(--cinza-400);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 14px;
+  }
+
+  .emp-features {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .emp-feat {
+    font-size: 0.72rem;
+    color: var(--cinza-400);
+    background: rgba(255,255,255,0.05);
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* ===== RESULTADOS ===== */
+  .resultados { background: var(--cinza-900); }
+
+  .res-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .results-board {
+    background: var(--cinza-800);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .rb-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .rb-header h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .rb-live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    color: var(--verde-ok);
+    font-weight: 600;
+  }
+
+  .rb-live::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--verde-ok);
+    border-radius: 50%;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  .rb-rows { padding: 0 24px; }
+
+  .rb-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .rb-row:last-child { border-bottom: none; }
+
+  .rb-label {
+    font-size: 0.83rem;
+    color: var(--cinza-400);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .rb-icon {
+    width: 32px; height: 32px;
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .rb-value {
+    text-align: right;
+  }
+
+  .rb-main {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .rb-sub {
+    font-size: 0.7rem;
+    color: var(--cinza-400);
+    margin-top: 2px;
+  }
+
+  .rb-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-left: 10px;
+  }
+
+  /* ===== DIFERENCIAIS ===== */
+  .diferenciais { background: var(--cinza-800); }
+
+  .dif-header { text-align: center; }
+  .dif-header .section-tag { justify-content: center; }
+  .dif-header .section-tag::before { display: none; }
+  .dif-header .section-desc { margin: 0 auto 52px; }
+
+  .dif-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .dif-card {
+    background: var(--cinza-700);
+    border-radius: 14px;
+    padding: 30px 24px;
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dif-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--vermelho);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .dif-card:hover::after { transform: scaleX(1); }
+  .dif-card:hover { transform: translateY(-3px); border-color: rgba(192,57,43,0.2); }
+
+  .dif-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--vermelho-vivo);
+    line-height: 1;
+    margin-bottom: 6px;
+    opacity: 0.9;
+  }
+
+  .dif-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 12px;
+  }
+
+  .dif-card p {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--cinza-400);
+  }
+
+  /* ===== DEPOIMENTOS ===== */
+  .depoimentos { background: var(--cinza-900); }
+
+  .dep-header { text-align: center; }
+  .dep-header .section-tag { justify-content: center; }
+  .dep-header .section-tag::before { display: none; }
+  .dep-header .section-desc { margin: 0 auto 52px; }
+
+  .dep-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .dep-card {
+    background: var(--cinza-800);
+    border-radius: 14px;
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: border-color 0.3s;
+  }
+
+  .dep-card:hover { border-color: rgba(192,57,43,0.25); }
+
+  .dep-quote { font-size: 2.5rem; color: var(--vermelho); font-family: 'Syne', sans-serif; font-weight: 800; line-height: 1; margin-bottom: 14px; }
+  .dep-text { font-size: 0.88rem; line-height: 1.75; color: var(--cinza-400); margin-bottom: 22px; font-style: italic; font-weight: 300; }
+  .dep-stars { color: var(--dourado); font-size: 0.82rem; letter-spacing: 2px; margin-bottom: 18px; }
+
+  .dep-author { display: flex; align-items: center; gap: 12px; }
+
+  .dep-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--vermelho-escuro), var(--vermelho));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: white;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .dep-name strong { display: block; font-size: 0.88rem; color: white; }
+  .dep-name span { font-size: 0.75rem; color: var(--cinza-400); }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    background: var(--vermelho-escuro);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, transparent 60%);
+  }
+
+  .cta-inner { position: relative; z-index: 1; }
+
+  .cta-section .section-tag { color: rgba(255,255,255,0.7); justify-content: center; }
+  .cta-section .section-tag::before { background: rgba(255,255,255,0.4); display: none; }
+  .cta-section .section-title { font-size: clamp(2rem, 3.5vw, 3rem); }
+  .cta-section .section-desc { color: rgba(255,255,255,0.7); margin: 0 auto 40px; }
+
+  .cta-form {
+    display: flex;
+    gap: 12px;
+    max-width: 520px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cta-input {
+    flex: 1;
+    min-width: 220px;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    color: white;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .cta-input::placeholder { color: rgba(255,255,255,0.5); }
+  .cta-input:focus { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.15); }
+
+  .btn-white {
+    background: white;
+    color: var(--vermelho-escuro);
+    padding: 15px 28px;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .btn-white:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #080808;
+    padding: 60px 5% 32px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 32px;
+  }
+
+  .footer-desc {
+    font-size: 0.85rem;
+    line-height: 1.75;
+    color: var(--cinza-400);
+    margin-top: 16px;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  .footer-contact a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.83rem;
+    color: var(--cinza-400);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+
+  .footer-contact a:hover { color: var(--vermelho-vivo); }
+
+  .footer-col h4 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+  .footer-col ul a {
+    font-size: 0.85rem;
+    color: var(--cinza-400);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-col ul a:hover { color: white; }
+
+  .copyright-notice {
+    background: rgba(192,57,43,0.07);
+    border: 1px solid rgba(192,57,43,0.15);
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.28);
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  .copyright-notice strong { color: rgba(255,255,255,0.5); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .footer-bottom p {
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.22);
+  }
+
+  .footer-bottom a { color: var(--vermelho-vivo); text-decoration: none; }
+
+  /* ===== WHATSAPP ===== */
+  .wa-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    z-index: 200;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+    transition: transform 0.3s;
+    text-decoration: none;
+  }
+
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* ===== FADE ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+  .fade-in:nth-child(2) { transition-delay: 0.1s; }
+  .fade-in:nth-child(3) { transition-delay: 0.2s; }
+  .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero-desc, .hero-actions, .hero-trust { justify-content: center; }
+    .hero-actions { display: flex; }
+    .hero-dashboard { display: none; }
+    .emp-grid { grid-template-columns: 1fr 1fr; }
+    .dif-grid { grid-template-columns: 1fr 1fr; }
+    .dep-grid { grid-template-columns: 1fr 1fr; }
+    .res-inner { grid-template-columns: 1fr; gap: 40px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { padding: 90px 4% 48px; }
+    section { padding: 60px 4%; }
+    .emp-grid { grid-template-columns: 1fr; }
+    .dif-grid { grid-template-columns: 1fr 1fr; }
+    .dep-grid { grid-template-columns: 1fr; }
+    .dep-grid .dep-card:nth-child(3) { display: none; }
+    .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .hero-trust { flex-wrap: wrap; justify-content: center; }
+    .trust-sep { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">AX</div>
+    <span class="logo-name">Apex <span>Incorporações</span></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#empreendimentos">Empreendimentos</a></li>
+    <li><a href="#resultados">Resultados</a></li>
+    <li><a href="#diferenciais">Diferenciais</a></li>
+    <li><a href="#contato" class="nav-cta">Falar com Especialista</a></li>
+  </ul>
+
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">🏗 Construtora &amp; Incorporadora Premium</div>
+    <h1 class="hero-title">
+      Seu imóvel<br>dos <span class="accent">sonhos,</span><br>construído com<br>precisão.
+    </h1>
+    <p class="hero-desc">
+      Mais de 18 anos desenvolvendo empreendimentos residenciais e comerciais de alto padrão no Nordeste. Da planta à entrega — com transparência total e resultado comprovado.
+    </p>
+    <div class="hero-actions">
+      <a href="#empreendimentos" class="btn-red">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="white" stroke-width="2"/><path d="M9 22V12h6v10" stroke="white" stroke-width="2"/></svg>
+        Ver Empreendimentos
+      </a>
+      <a href="#resultados" class="btn-ghost">
+        Nossos resultados →
+      </a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <div class="trust-num">890<span>+</span></div>
+        <div class="trust-label">Unidades entregues</div>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <div class="trust-num">8.4<span>x</span></div>
+        <div class="trust-label">ROAS médio campanhas</div>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <div class="trust-num">-40<span>%</span></div>
+        <div class="trust-label">CPL vs meta do setor</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-dashboard">
+    <div class="dash-float-1">
+      ↑ +38% leads qualificados este mês
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-topbar">
+        <div class="dash-dots">
+          <div class="dash-dot"></div>
+          <div class="dash-dot"></div>
+          <div class="dash-dot"></div>
+        </div>
+        <div class="dash-title-bar">Painel de Performance · Apex</div>
+        <div class="dash-period">Mai 2025</div>
+      </div>
+
+      <div class="dash-metrics">
+        <div class="dash-metric">
+          <div class="dash-metric-val leads">890</div>
+          <div class="dash-metric-label">Leads</div>
+          <div class="dash-metric-tag tag-green">↑ +28%</div>
+        </div>
+        <div class="dash-metric">
+          <div class="dash-metric-val cpl">-40%</div>
+          <div class="dash-metric-label">CPL</div>
+          <div class="dash-metric-tag tag-green">Abaixo meta</div>
+        </div>
+        <div class="dash-metric">
+          <div class="dash-metric-val roas">8.4x</div>
+          <div class="dash-metric-label">ROAS</div>
+          <div class="dash-metric-tag tag-blue">↑ Meta: 5x</div>
+        </div>
+      </div>
+
+      <div class="dash-chart">
+        <div class="chart-header">
+          <span class="chart-title">Leads por Empreendimento</span>
+          <div class="chart-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--vermelho)"></div> Leads</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--azul-stat)"></div> Vendas</div>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="chart-bars">
+            <div class="bar-group"><div class="bar red" style="height:88px"></div><div class="bar blue" style="height:55px"></div></div>
+            <div class="bar-group"><div class="bar red" style="height:64px"></div><div class="bar blue" style="height:40px"></div></div>
+            <div class="bar-group"><div class="bar red" style="height:100px"></div><div class="bar blue" style="height:68px"></div></div>
+            <div class="bar-group"><div class="bar red" style="height:48px"></div><div class="bar blue" style="height:30px"></div></div>
+            <div class="bar-group"><div class="bar red" style="height:76px"></div><div class="bar blue" style="height:52px"></div></div>
+            <div class="bar-group"><div class="bar red" style="height:92px"></div><div class="bar blue" style="height:62px"></div></div>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <div class="bar-label" style="flex:1">Jan</div>
+            <div class="bar-label" style="flex:1">Fev</div>
+            <div class="bar-label" style="flex:1">Mar</div>
+            <div class="bar-label" style="flex:1">Abr</div>
+            <div class="bar-label" style="flex:1">Mai</div>
+            <div class="bar-label" style="flex:1">Jun</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-footer-row">
+        <div class="dash-mini-card">
+          <div class="mini-icon r">🏆</div>
+          <div class="mini-info">
+            <strong style="color:var(--vermelho-vivo)">Top 1</strong>
+            <span>Região Nordeste 2024</span>
+          </div>
+        </div>
+        <div class="dash-mini-card">
+          <div class="mini-icon g">✓</div>
+          <div class="mini-info">
+            <strong style="color:var(--verde-ok)">98.7%</strong>
+            <span>Entregas no prazo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-float-2">
+      <div class="float2-icon">🔥</div>
+      <div class="float2-info">
+        <strong>Novo: Tower Atlântico</strong>
+        <span>24 unidades restantes · Fortaleza</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMPREENDIMENTOS -->
+<section class="empreendimentos" id="empreendimentos">
+  <div class="emp-header">
+    <div class="section-tag">Portfólio</div>
+    <h2 class="section-title">Empreendimentos de<br>alto padrão</h2>
+    <p class="section-desc">Cada projeto é desenvolvido com rigor técnico, materiais premium e localização estratégica para máxima valorização.</p>
+  </div>
+
+  <div class="emp-grid">
+    <div class="emp-card fade-in">
+      <div class="emp-thumb">
+        <div class="emp-thumb-bg azul">🏙</div>
+        <div class="emp-status status-lancamento">Lançamento</div>
+        <div class="emp-price">A partir de R$ 480k</div>
+      </div>
+      <div class="emp-info">
+        <h3>Tower Atlântico</h3>
+        <div class="emp-local">📍 Meireles · Fortaleza, CE</div>
+        <div class="emp-features">
+          <div class="emp-feat">🛏 3 suítes</div>
+          <div class="emp-feat">🏊 Piscina</div>
+          <div class="emp-feat">🚗 3 vagas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="emp-card fade-in">
+      <div class="emp-thumb">
+        <div class="emp-thumb-bg verde">🌿</div>
+        <div class="emp-status status-obras">Em obras</div>
+        <div class="emp-price">A partir de R$ 320k</div>
+      </div>
+      <div class="emp-info">
+        <h3>Reserva Verde Recife</h3>
+        <div class="emp-local">📍 Boa Viagem · Recife, PE</div>
+        <div class="emp-features">
+          <div class="emp-feat">🛏 2-3 quartos</div>
+          <div class="emp-feat">🌳 Área verde</div>
+          <div class="emp-feat">🏋 Academia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="emp-card fade-in">
+      <div class="emp-thumb">
+        <div class="emp-thumb-bg ouro">✨</div>
+        <div class="emp-status status-entregue">Entregue</div>
+        <div class="emp-price">Vendido — 100%</div>
+      </div>
+      <div class="emp-info">
+        <h3>Grand Palazzo Natal</h3>
+        <div class="emp-local">📍 Ponta Negra · Natal, RN</div>
+        <div class="emp-features">
+          <div class="emp-feat">🛏 4 suítes</div>
+          <div class="emp-feat">🌊 Vista mar</div>
+          <div class="emp-feat">🏡 250 m²</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section class="resultados" id="resultados">
+  <div class="res-inner">
+    <div>
+      <div class="section-tag">Performance comprovada</div>
+      <h2 class="section-title">Resultados reais,<br>não promessas</h2>
+      <p class="section-desc">Nossa estratégia integrada de marketing digital e vendas gera leads qualificados com custo 40% abaixo da média do setor imobiliário.</p>
+      <a href="#contato" class="btn-red">
+        Quero esses resultados
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+
+    <div class="results-board">
+      <div class="rb-header">
+        <h4>Painel de Resultados — Q1 2025</h4>
+        <div class="rb-live">Atualizado</div>
+      </div>
+      <div class="rb-rows">
+        <div class="rb-row">
+          <div class="rb-label">
+            <div class="rb-icon" style="background:rgba(39,174,96,0.15)">👥</div>
+            Total de Leads
+          </div>
+          <div class="rb-value">
+            <div class="rb-main">890 <span class="rb-badge tag-green">↑ +28%</span></div>
+            <div class="rb-sub">vs. trimestre anterior</div>
+          </div>
+        </div>
+        <div class="rb-row">
+          <div class="rb-label">
+            <div class="rb-icon" style="background:rgba(231,76,60,0.15)">💰</div>
+            Custo por Lead (CPL)
+          </div>
+          <div class="rb-value">
+            <div class="rb-main">R$ 18,40 <span class="rb-badge tag-green">-40%</span></div>
+            <div class="rb-sub">Meta era R$ 30,60</div>
+          </div>
+        </div>
+        <div class="rb-row">
+          <div class="rb-label">
+            <div class="rb-icon" style="background:rgba(123,140,232,0.15)">📈</div>
+            ROAS Total
+          </div>
+          <div class="rb-value">
+            <div class="rb-main">8.4x <span class="rb-badge tag-blue">↑ Recorde</span></div>
+            <div class="rb-sub">Meta era 5x</div>
+          </div>
+        </div>
+        <div class="rb-row">
+          <div class="rb-label">
+            <div class="rb-icon" style="background:rgba(212,172,13,0.15)">🏠</div>
+            Unidades Vendidas
+          </div>
+          <div class="rb-value">
+            <div class="rb-main">47 <span class="rb-badge tag-green">↑ +18%</span></div>
+            <div class="rb-sub">No trimestre</div>
+          </div>
+        </div>
+        <div class="rb-row">
+          <div class="rb-label">
+            <div class="rb-icon" style="background:rgba(39,174,96,0.15)">⭐</div>
+            NPS Clientes
+          </div>
+          <div class="rb-value">
+            <div class="rb-main">94 pts <span class="rb-badge tag-green">Excelente</span></div>
+            <div class="rb-sub">Benchmark setor: 67</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="diferenciais" id="diferenciais">
+  <div class="dif-header">
+    <div class="section-tag">Por que a Apex</div>
+    <h2 class="section-title">O padrão que nos<br>separa da concorrência</h2>
+    <p class="section-desc">Cada detalhe do nosso processo é pensado para garantir máxima qualidade, segurança jurídica e valorização do seu investimento.</p>
+  </div>
+
+  <div class="dif-grid">
+    <div class="dif-card fade-in">
+      <div class="dif-num">18</div>
+      <h3>Anos de Mercado</h3>
+      <p>Uma das construtoras mais tradicionais do Nordeste, com histórico impecável de entregas e reputação consolidada.</p>
+    </div>
+    <div class="dif-card fade-in">
+      <div class="dif-num">98%</div>
+      <h3>Entregas no Prazo</h3>
+      <p>Gestão de obras rigorosa com cronograma transparente e relatórios semanais para cada cliente investidor.</p>
+    </div>
+    <div class="dif-card fade-in">
+      <div class="dif-num">4.9</div>
+      <h3>Avaliação Média</h3>
+      <p>Mais de 620 avaliações verificadas em plataformas independentes, consolidando nossa reputação de excelência.</p>
+    </div>
+    <div class="dif-card fade-in">
+      <div class="dif-num">∞</div>
+      <h3>Suporte Vitalício</h3>
+      <p>Assistência técnica permanente após a entrega. Garantia estendida e equipe dedicada para pós-venda ativo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos">
+  <div class="dep-header">
+    <div class="section-tag">Quem já investiu</div>
+    <h2 class="section-title">Investidores que<br>confiam na Apex</h2>
+    <p class="section-desc">Histórias reais de clientes que encontraram segurança, qualidade e retorno com nossos empreendimentos.</p>
+  </div>
+
+  <div class="dep-grid">
+    <div class="dep-card fade-in">
+      <div class="dep-quote">"</div>
+      <p class="dep-text">Comprei na planta e vi meu apartamento valorizar 38% até a entrega. A Apex cumpriu cada promessa com transparência absoluta.</p>
+      <div class="dep-stars">★★★★★</div>
+      <div class="dep-author">
+        <div class="dep-avatar">T</div>
+        <div class="dep-name">
+          <strong>Thiago Drummond</strong>
+          <span>Investidor · Tower Atlântico</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dep-card fade-in">
+      <div class="dep-quote">"</div>
+      <p class="dep-text">O processo de compra foi simples, claro e sem surpresas. A equipe comercial é exemplar e o produto final superou todas as expectativas.</p>
+      <div class="dep-stars">★★★★★</div>
+      <div class="dep-author">
+        <div class="dep-avatar">L</div>
+        <div class="dep-name">
+          <strong>Luciana Barros</strong>
+          <span>Compradora · Reserva Verde</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dep-card fade-in">
+      <div class="dep-quote">"</div>
+      <p class="dep-text">Já comprei três imóveis com a Apex. Empresa séria, com acabamento impecável e valorização garantida pela localização estratégica dos projetos.</p>
+      <div class="dep-stars">★★★★★</div>
+      <div class="dep-author">
+        <div class="dep-avatar">M</div>
+        <div class="dep-name">
+          <strong>Marcos Alencar</strong>
+          <span>Investidor recorrente · 3 unidades</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contato">
+  <div class="cta-inner">
+    <div class="section-tag">Fale com um especialista</div>
+    <h2 class="section-title">Pronto para investir<br>com segurança?</h2>
+    <p class="section-desc">Deixe seu contato e um de nossos consultores de imóveis entrará em contato em até 1 hora útil.</p>
+
+    <div class="cta-form">
+      <input class="cta-input" type="text" placeholder="Seu nome completo">
+      <input class="cta-input" type="tel" placeholder="WhatsApp (00) 00000-0000">
+      <button class="btn-white" type="button" onclick="this.textContent='✓ Enviado! Aguarde contato.'; this.style.background='#eaffea'; setTimeout(()=>{this.textContent='Quero ser contactado'; this.style.background='';},4000)">
+        Quero ser contactado
+      </button>
+    </div>
+
+    <p style="font-size:0.72rem; color:rgba(255,255,255,0.4); margin-top:16px;">
+      🔒 Seus dados são protegidos pela LGPD. Não enviamos spam.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="nav-logo" style="margin-bottom:16px;">
+        <div class="logo-mark">AX</div>
+        <span class="logo-name">Apex <span>Incorporações</span></span>
+      </div>
+      <p class="footer-desc">Construtora e incorporadora premium com 18 anos de história no mercado imobiliário do Nordeste. Qualidade, transparência e valorização em cada projeto.</p>
+      <div class="footer-contact">
+        <a href="tel:+558540002000">📞 (85) 4000-2000</a>
+        <a href="mailto:vendas@apexincorporacoes.com.br">✉ vendas@apexincorporacoes.com.br</a>
+        <a href="#">📍 Av. Beira Mar, 3000 — Fortaleza, CE</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Empreendimentos</h4>
+      <ul>
+        <li><a href="#">Tower Atlântico</a></li>
+        <li><a href="#">Reserva Verde Recife</a></li>
+        <li><a href="#">Grand Palazzo Natal</a></li>
+        <li><a href="#">Outros projetos</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#">Sobre a Apex</a></li>
+        <li><a href="#">Equipe</a></li>
+        <li><a href="#">Sustentabilidade</a></li>
+        <li><a href="#">Trabalhe conosco</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Investidor</h4>
+      <ul>
+        <li><a href="#">Portal do investidor</a></li>
+        <li><a href="#">Acompanhar obra</a></li>
+        <li><a href="#">Documentação</a></li>
+        <li><a href="#">Política de privacidade</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="copyright-notice">
+    <strong>⚠ Aviso de Direitos Autorais:</strong> Este website é um projeto demonstrativo desenvolvido por 
+    <strong>GS Web Production</strong> exclusivamente para fins de portfólio profissional. Todo o conteúdo, layout, design, 
+    código-fonte, identidade visual, elementos gráficos e dados apresentados são de propriedade exclusiva da 
+    <strong>GS Web Production</strong>, protegidos pela Lei de Direitos Autorais nº 9.610/98 (Brasil) e tratados internacionais 
+    de propriedade intelectual. A empresa "Apex Incorporações" é inteiramente fictícia, criada para fins demonstrativos. 
+    Os dados de performance (CPL, ROAS, leads) são ilustrativos e não representam resultados garantidos. 
+    Reprodução parcial ou total sem autorização expressa é expressamente proibida. 
+    © 2025 GS Web Production. Todos os direitos reservados.
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Apex Incorporações. Site desenvolvido por <a href="#">GS Web Production</a>. Todos os direitos reservados.</p>
+    <p>CRECI registrado. Dados para fins ilustrativos. Empresa fictícia.</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/5585940002000" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fade in
+  const faders = document.querySelectorAll('.fade-in');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  faders.forEach(el => obs.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // Animate numbers on scroll
+  function animateNum(el, target, suffix = '') {
+    let start = 0;
+    const duration = 1800;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const prog = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - prog, 3);
+      el.textContent = Math.floor(eased * target) + suffix;
+      if (prog < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const trustObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        trustObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+</script>
+</body>
+</html>
